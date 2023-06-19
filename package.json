@@ -1,0 +1,27 @@
+{
+  "name": "tally-poc-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/node": "^20.3.1",
+    "chai": "^4.3.7",
+    "dotenv": "^16.3.1",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "ethereumjs-util": "^7.1.5",
+    "ethers": "^5.7.2",
+    "merkle-patricia-tree": "^4.2.4",
+    "rlp": "^3.0.0"
+  }
+}
