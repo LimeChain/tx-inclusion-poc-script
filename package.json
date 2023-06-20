@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typechain/ethers-v5": "^11.0.0",
     "@types/chai": "^4.3.5",
     "@types/node": "^20.3.1",
     "chai": "^4.3.7",

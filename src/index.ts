@@ -1,11 +1,12 @@
-import * as utils from './utils.js';
-import { SecureTrie } from 'merkle-patricia-tree';
-import { bufferToHex, keccak256 } from 'ethereumjs-util';
-import TrustedOracleAbi from './abis/TrustedOracle.json' assert { type: "json" };
+import * as utils from "./utils.js";
+import { SecureTrie } from "merkle-patricia-tree";
+import { bufferToHex, keccak256 } from "ethereumjs-util";
+import TrustedOracleAbi from "./abis/TrustedOracle.json" assert { type: "json" };
 import * as dotenv from "dotenv";
-import { ethers } from 'ethers';
-import rlp from 'rlp';
+import { ethers } from "ethers";
+import rlp from "rlp";
 import { assert } from "chai";
+import { TrustedOracle } from "./types/typechain/TrustedOracle.js";
 dotenv.config();
 
 assert(process.env.OWNER_PK !== undefined);
@@ -29,10 +30,10 @@ const oracleContract = new ethers.Contract(
     oracleAddress,
     TrustedOracleAbi,
     wallet,
-);
+) as TrustedOracle;
 
 oracleContract.owner().then((result: any) => {
-    console.log('owner', result);
+    console.log("owner", result);
 });
 
 // run the script for this tx
@@ -43,8 +44,7 @@ const txData = await utils.getTransactionByHash(txHash);
 const txReceipt = await utils.getTransactionReceipt(txHash);
 
 // check tx status == 0
-// TODO: throw an error
-txReceipt.status === '0x1' ? console.log('tx status is 0') : console.log('tx status is 1');
+if (parseInt(txReceipt.status) !== 1) throw new Error("tx status is not successfull");
 
 const blockHash = txData.blockHash;
 const blockData = await utils.getBlockByHash(blockHash);
@@ -62,8 +62,7 @@ const txReceipts =
         })
     );
 
-let sortedTxReceipts = [];
-sortedTxReceipts = txReceipts.sort((a, b) => {
+const sortedTxReceipts = txReceipts.sort((a, b) => {
     return parseInt(a.transactionIndex) - parseInt(b.transactionIndex);
 });
 
@@ -93,8 +92,8 @@ for (let i = 0; i < sortedTxReceipts.length; i++) {
     const value = Buffer.from(Object.values(receiptToHash));
     trie.put(key, value);
 }
-console.log('receipts tree root pure', trie.root);
-console.log('receipts tree root keccak', keccak256(Buffer.from(trie.root)).toString('hex'));
+console.log("receipts tree root pure", trie.root);
+console.log("receipts tree root keccak", keccak256(Buffer.from(trie.root)).toString("hex"));
 
 
 // proof that this txReceipt exists and is with status 0
