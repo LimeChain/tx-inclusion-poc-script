@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node ."
+    "start": "tsc && node .",
+    "deploy-contracts": "cd contracts && source ../.env && forge script script/Deploy.s.sol:DeployScript --rpc-url $RPC_URL --broadcast"
   },
   "keywords": [],
   "author": "",

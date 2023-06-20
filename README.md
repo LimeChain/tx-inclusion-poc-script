@@ -9,9 +9,11 @@ anvil
 ```
 
 ## Deploy contracts to local node
+In another terminal execute:
 ```
-forge create TrustedOracle --private-key <your private key>
+npm run deploy-contracts
 ```
+*Make sure the OWNER_PK env variable has the 'export' word in the line start
 
 ## Copy contracts ABIs to src/abis
 ```
