@@ -1,0 +1,3 @@
+[submodule "contracts/lib/Solidity-RLP"]
+	path = contracts/lib/Solidity-RLP
+	url = https://github.com/hamdiallam/Solidity-RLP
