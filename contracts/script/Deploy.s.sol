@@ -13,6 +13,8 @@ contract DeployScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         TrustedOracle oracle = new TrustedOracle();
+        oracle.verifyBlockHash();
+
         ReceiptInclusionProver prover = new ReceiptInclusionProver(address(oracle));
 
         vm.stopBroadcast();
