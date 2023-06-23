@@ -14,16 +14,16 @@
   "devDependencies": {
     "@typechain/ethers-v5": "^11.0.0",
     "@types/chai": "^4.3.5",
+    "@types/debug": "^4.1.8",
+    "@types/lru-cache": "^7.10.10",
     "@types/node": "^20.3.1",
     "chai": "^4.3.7",
     "dotenv": "^16.3.1",
     "typescript": "^5.1.3"
   },
   "dependencies": {
+    "@ethereumjs/vm": "6.5.0",
     "axios": "^1.4.0",
-    "ethereumjs-util": "^7.1.5",
-    "ethers": "^5.7.2",
-    "merkle-patricia-tree": "^4.2.4",
-    "rlp": "^3.0.0"
+    "ethers": "^5.7.2"
   }
 }
