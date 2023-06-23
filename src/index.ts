@@ -2,6 +2,7 @@ import * as utils from './utils.js';
 import { RLP } from '@ethereumjs/rlp'
 import { Trie } from '@ethereumjs/trie';
 import { encodeReceipt} from "@ethereumjs/vm/dist/runBlock.js";
+// import {bytesToHex} from "@ethereumjs/util/dist/bytes.js";
 
 import TrustedOracleAbi from './abis/TrustedOracle.json' assert { type: "json" };
 import * as dotenv from "dotenv";
@@ -68,19 +69,17 @@ const sortedTxReceipts = txReceipts.sort((a, b) => {
     return parseInt(a.transactionIndex) - parseInt(b.transactionIndex);
 });
 
-console.log('sortedTxReceipts[0]: ', sortedTxReceipts[0]);
 const receiptTrie = new Trie();
 for (let i = 0; i < sortedTxReceipts.length; i++) {
     try {
-        const logs: Log[] = [
-            sortedTxReceipts[i].logs.map((log: any) => {
-                return {
-                    address: Buffer.from(log.address.slice(2), 'hex'),
-                    topics: log.topics.map((topic: any) => Buffer.from(topic.slice(2), 'hex')),
-                    data: Buffer.from(log.data.slice(2), 'hex')
-                }
+        const logs: Log[] = sortedTxReceipts[i].logs.map((log: any) => {
+                return [
+                    Buffer.from(log.address.slice(2), 'hex'),
+                    log.topics.map((topic: any) => Buffer.from(topic.slice(2), 'hex')),
+                    Buffer.from(log.data.slice(2), 'hex')
+                ]
             })
-        ]
+
         const receipt: TxReceipt = {
             status: sortedTxReceipts[i].status === '0x1'? 1 : 0,
             cumulativeBlockGasUsed: BigInt(sortedTxReceipts[i].cumulativeGasUsed),
@@ -88,12 +87,14 @@ for (let i = 0; i < sortedTxReceipts.length; i++) {
             logs: logs,
         }
         const encodedReceipt = encodeReceipt(receipt, parseInt(sortedTxReceipts[i].type))
-        await receiptTrie.put(Buffer.from(RLP.encode(i)), encodedReceipt)
+        //@ts-ignore
+        await receiptTrie.put(RLP.encode(i), encodedReceipt)
 
     } catch (error) {
         console.error(`Failed to add data to trie at index ${i}: ${error}`);
     }
 }
+
 // console.log('receipts tree root pure', trie.root);
 // console.log('receipts tree root keccak', keccak256(Buffer.from(trie.root)).toString('hex'));
 console.log('Receipts trie root: ', '0x' + receiptTrie.root().toString('hex'));
