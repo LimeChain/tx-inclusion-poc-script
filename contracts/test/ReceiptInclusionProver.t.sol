@@ -5,6 +5,5 @@ import "forge-std/Test.sol";
 import "../src/ReceiptInclusionProver.sol";
 
 contract ReceiptInclusionProverTest is Test {
-    function setUp() public {
-    }
+    function setUp() public {}
 }

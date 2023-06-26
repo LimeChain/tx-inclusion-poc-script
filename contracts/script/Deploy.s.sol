@@ -2,8 +2,8 @@
 pragma solidity ^0.8.19;
 
 import "forge-std/Script.sol";
-import { TrustedOracle } from "../src/TrustedOracle.sol";
-import { ReceiptInclusionProver } from "../src/ReceiptInclusionProver.sol";
+import {TrustedOracle} from "../src/TrustedOracle.sol";
+import {ReceiptInclusionProver} from "../src/ReceiptInclusionProver.sol";
 
 contract DeployScript is Script {
     function setUp() public {}

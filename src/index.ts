@@ -46,7 +46,7 @@ const txHash = "0x04eb492e769ec030a9ce5720ad9023cf8401ed8dbdb71c28958197ced6d4b6
 // gather data
 const txData: JsonRpcTx = await utils.getTransactionByHash(txHash);
 const txReceipt = await utils.getTransactionReceipt(txHash);
-
+const targetTxIndex = txData.transactionIndex;
 // check tx status == 0
 if (parseInt(txReceipt.status) !== 1) throw new Error("tx status is not successfull");
 
@@ -98,6 +98,7 @@ for (let i = 0; i < sortedTxReceipts.length; i++) {
 // console.log('receipts tree root pure', trie.root);
 // console.log('receipts tree root keccak', keccak256(Buffer.from(trie.root)).toString('hex'));
 console.log('Receipts trie root: ', '0x' + receiptTrie.root().toString('hex'));
-
+//@ts-ignore
+receiptTrie.findPath(Buffer.from(RLP.encode(targetTxIndex))).then((path) => {
 
 // proof that this txReceipt exists and is with status 0
