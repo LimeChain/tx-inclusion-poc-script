@@ -5,7 +5,7 @@ import "./Receipt.sol";
 import "./BlockData.sol";
 
 struct ProverDto {
-    BlockData blockInfo;
+    BlockData blockData;
     Receipt txReceipt;
     uint256 blockNumber;
     bytes32[] receiptProofBranch;
