@@ -1,30 +1,34 @@
 import * as utils from './utils.js';
 import { RLP } from '@ethereumjs/rlp'
 import { Trie } from '@ethereumjs/trie';
-import { encodeReceipt} from "@ethereumjs/vm/dist/runBlock.js";
-// import {bytesToHex} from "@ethereumjs/util/dist/bytes.js";
+import { encodeReceipt } from "@ethereumjs/vm/dist/runBlock.js";
+import { keccak256 } from "ethereumjs-util";
 
 import TrustedOracleAbi from './abis/TrustedOracle.json' assert { type: "json" };
+import DummyRefunderAbi from './abis/DummyRefunder.json' assert { type: "json" };
 import * as dotenv from "dotenv";
 
 import { ethers } from 'ethers';
 import { assert } from "chai";
+
 import { TxReceipt } from '@ethereumjs/vm';
 import type { JsonRpcTx } from '@ethereumjs/tx'
-
 import type {Log} from '@ethereumjs/evm';
-import { TrustedOracle } from './types/typechain/TrustedOracle.js';
+import { BlockData } from './types/BlockData.js';
+import { ProverDto } from './types/ProverDto.js';
 dotenv.config();
 
 assert(process.env.OWNER_PK !== undefined);
 assert(process.env.RPC_URL !== undefined);
 assert(process.env.NETWORK_ID !== undefined);
 assert(process.env.ORACLE_ADDRESS !== undefined);
+assert(process.env.REFUNDER_ADDRESS !== undefined);
 
 const ownerPrivateKey = process.env.OWNER_PK;
 const rpcUrl = process.env.RPC_URL;
 const chainId = parseInt(process.env.NETWORK_ID);
 const oracleAddress = process.env.ORACLE_ADDRESS;
+const refunderAddress = process.env.REFUNDER_ADDRESS;
 
 // setup provider, wallet, contract
 const provider = new ethers.providers.JsonRpcProvider(
@@ -38,7 +42,13 @@ const oracleContract = new ethers.Contract(
     oracleAddress,
     TrustedOracleAbi,
     wallet,
-) as TrustedOracle;
+);
+
+const refunder = new ethers.Contract(
+    refunderAddress,
+    DummyRefunderAbi,
+    wallet,
+);
 
 // run the script for this tx
 const txHash = "0x04eb492e769ec030a9ce5720ad9023cf8401ed8dbdb71c28958197ced6d4b646";
@@ -55,8 +65,6 @@ console.log(parseInt(blockData.number), blockData.hash);
 
 await oracleContract.setBlockHash(parseInt(blockData.number), blockData.hash);
 //console.log(await oracleContract.getBlockHash(1));
-
-console.log("block receiptsRoot", blockData.receiptsRoot);
 
 const txReceipts = 
     await Promise.all(
@@ -95,9 +103,44 @@ for (let i = 0; i < sortedTxReceipts.length; i++) {
     }
 }
 
-// console.log('receipts tree root pure', trie.root);
-// console.log('receipts tree root keccak', keccak256(Buffer.from(trie.root)).toString('hex'));
-console.log('Receipts trie root: ', '0x' + receiptTrie.root().toString('hex'));
+// check if receipts root matches
+if (blockData.receiptsRoot !== `0x${receiptTrie.root().toString('hex')}`) {
+    throw new Error("Receipts root mismatch");
+}
 
+//const receiptProofBranch = await receiptTrie.createProof(Buffer.from(RLP.encode(parseInt(txReceipt.transactionIndex))));
+const path = await receiptTrie.findPath(Buffer.from(RLP.encode(parseInt(txReceipt.transactionIndex))));
 
-// proof that this txReceipt exists and is with status 0
+// TODO: needs to be double-checked
+const pathTxHashes = path.stack.map((x: any) => {
+    return Buffer.from(keccak256(x._value).toString('hex'));
+})
+
+const blockDataDto: BlockData = {
+    parentHash: blockData.parentHash,
+    sha3Uncles: blockData.sha3Uncles,
+    miner:  blockData.miner,
+    stateRoot: blockData.stateRoot,
+    transactionsRoot: blockData.transactionsRoot,
+    receiptsRoot: blockData.receiptsRoot,
+    logsBloom: blockData.logsBloom,
+    difficulty: parseInt(blockData.difficulty),
+    number: parseInt(blockData.number),
+    gasLimit: parseInt(blockData.gasLimit),
+    gasUsed: parseInt(blockData.gasUsed),
+    timestamp: parseInt(blockData.timestamp),
+    extraData: blockData.extraData,
+    mixHash: blockData.mixHash,
+    nonce: blockData.nonce
+}
+
+const proverDto: ProverDto = {
+    blockNumber: blockData.number,
+    blockHash: blockData.hash,
+    receiptProofBranch: pathTxHashes,
+    receiptRoot: blockData.receiptsRoot,
+    txIndex: parseInt(txData.transactionIndex),
+    blockData: blockDataDto
+}
+
+const claimed = await refunder.claim(proverDto);

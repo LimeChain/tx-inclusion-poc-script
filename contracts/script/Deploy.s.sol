@@ -4,6 +4,7 @@ pragma solidity ^0.8.19;
 import "forge-std/Script.sol";
 import { TrustedOracle } from "../src/TrustedOracle.sol";
 import { ReceiptInclusionProver } from "../src/ReceiptInclusionProver.sol";
+import { DummyRefunder } from "../src/DummyRefunder.sol";
 
 contract DeployScript is Script {
     function setUp() public {}
@@ -14,6 +15,7 @@ contract DeployScript is Script {
 
         TrustedOracle oracle = new TrustedOracle();
         ReceiptInclusionProver prover = new ReceiptInclusionProver(address(oracle));
+        DummyRefunder refunder = new DummyRefunder(address(prover));
 
         vm.stopBroadcast();
     }
