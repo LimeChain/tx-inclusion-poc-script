@@ -1,10 +1,9 @@
 import { BlockData } from "./BlockData";
+import { Receipt } from "./Receipt";
 
 export type ProverDto = {
-    blockNumber: number;
-    blockHash: Uint8Array;
-    receiptProofBranch: Uint8Array[];
-    receiptRoot: Uint8Array;
-    txIndex: number;
     blockData: BlockData;
+    txReceipt: Receipt;
+    blockNumber: number;
+    receiptProofBranch: Uint8Array[];
 }

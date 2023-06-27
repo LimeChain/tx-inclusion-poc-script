@@ -1,7 +1,7 @@
 export type BlockData = {
     parentHash: Uint8Array;
     sha3Uncles: Uint8Array;
-    miner;
+    miner: Uint8Array;
     stateRoot: Uint8Array;
     transactionsRoot: Uint8Array;
     receiptsRoot: Uint8Array;

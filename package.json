@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "@ethereumjs/vm": "6.5.0",
+    "@ethersproject/strings": "^5.7.0",
     "axios": "^1.4.0",
+    "ethereumjs-util": "^7.1.5",
     "ethers": "^5.7.2"
   }
 }

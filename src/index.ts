@@ -1,8 +1,9 @@
-import * as utils from './utils.js';
+import { stripHexPrefixIfNecessary, getTransactionByHash, getTransactionReceipt, getBlockByHash } from './utils.js';
 import { RLP } from '@ethereumjs/rlp'
 import { Trie } from '@ethereumjs/trie';
 import { encodeReceipt } from "@ethereumjs/vm/dist/runBlock.js";
 import { keccak256 } from "ethereumjs-util";
+import { toUtf8Bytes } from "@ethersproject/strings";
 
 import TrustedOracleAbi from './abis/TrustedOracle.json' assert { type: "json" };
 import DummyRefunderAbi from './abis/DummyRefunder.json' assert { type: "json" };
@@ -54,13 +55,13 @@ const refunder = new ethers.Contract(
 const txHash = "0x04eb492e769ec030a9ce5720ad9023cf8401ed8dbdb71c28958197ced6d4b646";
 
 // gather data
-const txData: JsonRpcTx = await utils.getTransactionByHash(txHash);
-const txReceipt = await utils.getTransactionReceipt(txHash);
+const txData: JsonRpcTx = await getTransactionByHash(txHash);
+const txReceipt = await getTransactionReceipt(txHash);
 const targetTxIndex = txData.transactionIndex;
 // check tx status == 0
 if (parseInt(txReceipt.status) !== 1) throw new Error("tx status is not successfull");
 
-const blockData = await utils.getBlockByHash(txData.blockHash);
+const blockData = await getBlockByHash(txData.blockHash);
 console.log(parseInt(blockData.number), blockData.hash);
 
 await oracleContract.setBlockHash(parseInt(blockData.number), blockData.hash);
@@ -69,7 +70,7 @@ await oracleContract.setBlockHash(parseInt(blockData.number), blockData.hash);
 const txReceipts = 
     await Promise.all(
         blockData.transactions.map((txHash: string) => {
-            return utils.getTransactionReceipt(txHash) as Promise<TxReceipt>;
+            return getTransactionReceipt(txHash) as Promise<TxReceipt>;
         })
     );
 
@@ -113,34 +114,34 @@ const path = await receiptTrie.findPath(Buffer.from(RLP.encode(parseInt(txReceip
 
 // TODO: needs to be double-checked
 const pathTxHashes = path.stack.map((x: any) => {
-    return Buffer.from(keccak256(x._value).toString('hex'));
+    return Buffer.from(stripHexPrefixIfNecessary(keccak256(x._value).toString('hex')));
 })
 
 const blockDataDto: BlockData = {
-    parentHash: blockData.parentHash,
-    sha3Uncles: blockData.sha3Uncles,
-    miner:  blockData.miner,
-    stateRoot: blockData.stateRoot,
-    transactionsRoot: blockData.transactionsRoot,
-    receiptsRoot: blockData.receiptsRoot,
-    logsBloom: blockData.logsBloom,
+    parentHash: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.parentHash)),
+    sha3Uncles: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.sha3Uncles)),
+    miner: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.miner)),
+    stateRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.stateRoot)),
+    transactionsRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.transactionsRoot)),
+    receiptsRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.receiptsRoot)),
+    logsBloom: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.logsBloom)),
     difficulty: parseInt(blockData.difficulty),
     number: parseInt(blockData.number),
     gasLimit: parseInt(blockData.gasLimit),
     gasUsed: parseInt(blockData.gasUsed),
     timestamp: parseInt(blockData.timestamp),
-    extraData: blockData.extraData,
-    mixHash: blockData.mixHash,
-    nonce: blockData.nonce
+    extraData: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.extraData)),
+    mixHash: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.mixHash)),
+    nonce: parseInt(blockData.nonce)
 }
 
 const proverDto: ProverDto = {
+    blockData: blockDataDto,
+    txReceipt: txReceipt,
     blockNumber: blockData.number,
-    blockHash: blockData.hash,
-    receiptProofBranch: pathTxHashes,
-    receiptRoot: blockData.receiptsRoot,
-    txIndex: parseInt(txData.transactionIndex),
-    blockData: blockDataDto
+    receiptProofBranch: pathTxHashes
 }
+
+console.log(proverDto);
 
 const claimed = await refunder.claim(proverDto);
