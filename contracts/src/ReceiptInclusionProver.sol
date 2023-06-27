@@ -1,11 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "src/structs/ProverDto.sol";
-import "src/interfaces/ITrustedOracle.sol";
-import "src/interfaces/IReceiptInclusionProver.sol";
+import "openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
+import "forge-std/console.sol";
+import "solidity-rlp-encode/RLPEncode.sol";
+import "Solidity-RLP/RLPReader.sol";
+
+import "./structs/ProverDto.sol";
+import "./interfaces/ITrustedOracle.sol";
+import "./interfaces/IReceiptInclusionProver.sol";
 
 contract ReceiptInclusionProver is IReceiptInclusionProver {
+    using RLPReader for bytes;
+    using RLPReader for uint;
+    using RLPReader for RLPReader.RLPItem;
+    using RLPReader for RLPReader.Iterator;
+
     ITrustedOracle private _oracle;
 
     constructor(address oracleAddress) {
@@ -14,28 +24,36 @@ contract ReceiptInclusionProver is IReceiptInclusionProver {
     }
 
     function proveReceiptInclusion(ProverDto calldata data) external view returns (bool) {
-        if (_oracle.getBlockHash(data.blockNumber) != data.blockHash) return false;
+        if(data.receipt.status == 0) return false;
 
-        if (!_verify(data.receiptProofBranch, data.receiptRoot, data.txReceipt, data.txIndex)) return false;
+        if (_oracle.getBlockHash(data.blockNumber) != _getBlockHash(data.blockInfo)) return false;
+        
+        bytes32 txReceiptHash = keccak256(data.txReceipt);
+        if (MerkleProof.verifyCalldata(data.receiptProofBranch, data.blockInfo.receiptRoot, txReceiptHash)) return false;
 
         return true;
     }
 
-    function _verify(bytes32[] memory proof, bytes32 root, bytes32 leaf, uint256 index) internal pure returns (bool) {
-        bytes32 hash = leaf;
+    function _getBlockHash(BlockData calldata data) internal pure returns (bytes32) {
+        bytes memory blockHashBytes = abi.encode(
+            data.parentHash,
+            data.sha3Uncles,
+            data.miner,
+            data.stateRoot,
+            data.transactionsRoot,
+            data.receiptsRoot,
+            data.logsBloom,
+            data.difficulty,
+            data.number,
+            data.gasLimit,
+            data.gasUsed,
+            data.timestamp,
+            data.extraData,
+            data.mixHash,
+            data.nonce
+        );
 
-        for (uint256 i = 0; i < proof.length; i++) {
-            bytes32 proofElement = proof[i];
-
-            if (index % 2 == 0) {
-                hash = keccak256(abi.encodePacked(hash, proofElement));
-            } else {
-                hash = keccak256(abi.encodePacked(proofElement, hash));
-            }
-
-            index = index / 2;
-        }
-
-        return hash == root;
+        RLPReader.RLPItem memory rlpItem = blockHashBytes.toRlpItem();
+        return keccak256(rlpItem.toRlpBytes());
     }
 }
