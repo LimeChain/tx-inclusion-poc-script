@@ -1,12 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import { ReceiptInclusionProver } from "./ReceiptInclusionProver.sol";
-import { DataTypes } from "./DataTypes.sol";
+import "./interfaces/IReceiptInclusionProver.sol";
+import "./structs/ProverDto.sol";
 
 contract DummyRefunder {
-
-    function claim (DataTypes.BlockData calldata _blockData) view external {
-        
-    }
+    function claim(ProverDto calldata data) external view {}
 }
