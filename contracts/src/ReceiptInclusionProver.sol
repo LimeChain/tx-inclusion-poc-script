@@ -3,7 +3,6 @@ pragma solidity ^0.8.19;
 
 import "openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
 import "forge-std/console.sol";
-import "solidity-rlp-encode/RLPEncode.sol";
 import "Solidity-RLP/RLPReader.sol";
 
 import "./structs/ProverDto.sol";
@@ -23,18 +22,18 @@ contract ReceiptInclusionProver is IReceiptInclusionProver {
         _oracle = ITrustedOracle(oracleAddress);
     }
 
-    function proveReceiptInclusion(ProverDto calldata data) external view returns (bool) {
-        if(data.receipt.status == 0) return false;
+    function proveReceiptInclusion(ProverDto memory data) external view returns (bool) {
+        if(!data.txReceipt.status) return false;
 
         if (_oracle.getBlockHash(data.blockNumber) != _getBlockHash(data.blockInfo)) return false;
         
-        bytes32 txReceiptHash = keccak256(data.txReceipt);
-        if (MerkleProof.verifyCalldata(data.receiptProofBranch, data.blockInfo.receiptRoot, txReceiptHash)) return false;
+        bytes32 txReceiptHash = _getReceiptHash(data.txReceipt);
+        if (MerkleProof.verify(data.receiptProofBranch, data.blockInfo.receiptsRoot, txReceiptHash)) return false;
 
         return true;
     }
 
-    function _getBlockHash(BlockData calldata data) internal pure returns (bytes32) {
+    function _getBlockHash(BlockData memory data) internal pure returns (bytes32) {
         bytes memory blockHashBytes = abi.encode(
             data.parentHash,
             data.sha3Uncles,
@@ -54,6 +53,18 @@ contract ReceiptInclusionProver is IReceiptInclusionProver {
         );
 
         RLPReader.RLPItem memory rlpItem = blockHashBytes.toRlpItem();
+        return keccak256(rlpItem.toRlpBytes());
+    }
+
+    function _getReceiptHash(Receipt memory data) internal pure returns (bytes32) {
+        bytes memory receiptHashBytes = abi.encode(
+            data.status,
+            data.cumulativeGasUsed,
+            data.bitvector,
+            data.logs
+        );
+
+        RLPReader.RLPItem memory rlpItem = receiptHashBytes.toRlpItem();
         return keccak256(rlpItem.toRlpBytes());
     }
 }

@@ -4,3 +4,6 @@
 [submodule "lib/openzeppelin-contracts"]
 	path = lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "contracts/lib/Solidity-RLP"]
+	path = contracts/lib/Solidity-RLP
+	url = https://github.com/hamdiallam/Solidity-RLP
