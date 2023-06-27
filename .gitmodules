@@ -1,0 +1,3 @@
+[submodule "contracts/lib/solidity-rlp-encode"]
+	path = contracts/lib/solidity-rlp-encode
+	url = https://github.com/bakaoh/solidity-rlp-encode
