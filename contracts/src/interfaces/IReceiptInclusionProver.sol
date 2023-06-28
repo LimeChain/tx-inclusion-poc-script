@@ -6,5 +6,7 @@ import "../structs/ProverDto.sol";
 /// @title Interface for the ReceiptInclusionProver contract
 /// @author Limechain team
 interface IReceiptInclusionProver {
-    function proveReceiptInclusion(ProverDto calldata dto) external view returns (bool);
+    function proveReceiptInclusion(
+        ProverDto calldata dto
+    ) external view returns (bool);
 }

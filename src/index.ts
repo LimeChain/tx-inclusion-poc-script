@@ -52,7 +52,7 @@ const refunder = new ethers.Contract(
 );
 
 // run the script for this tx
-const txHash = "0x04eb492e769ec030a9ce5720ad9023cf8401ed8dbdb71c28958197ced6d4b646";
+const txHash = "0x2b09f6a0faea56c954c875f31795f0f9afabff3b9fa2b4fb42df87805ab4b21d";
 
 // gather data
 const txData: JsonRpcTx = await getTransactionByHash(txHash);
@@ -142,4 +142,4 @@ const proverDto: ProverDto = {
     receiptProofBranch: pathTxHashes
 }
 
-// const claimed = await refunder.claim(proverDto);
+const claimed = await refunder.claim(proverDto);

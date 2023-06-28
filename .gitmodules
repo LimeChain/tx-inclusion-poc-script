@@ -1,12 +1,3 @@
-[submodule "contracts/lib/solidity-rlp-encode"]
-	path = contracts/lib/solidity-rlp-encode
-	url = https://github.com/bakaoh/solidity-rlp-encode
 [submodule "contracts/lib/Solidity-RLP"]
 	path = contracts/lib/Solidity-RLP
 	url = https://github.com/hamdiallam/Solidity-RLP
-[submodule "lib/solidity-rlp-encode"]
-	path = lib/solidity-rlp-encode
-	url = https://github.com/bakaoh/solidity-rlp-encode
-[submodule "contracts/lib/solidity-rlp-encode"]
-	path = contracts/lib/solidity-rlp-encode
-	url = https://github.com/bakaoh/solidity-rlp-encode
