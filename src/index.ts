@@ -9,7 +9,7 @@ import TrustedOracleAbi from './abis/TrustedOracle.json' assert { type: "json" }
 import DummyRefunderAbi from './abis/DummyRefunder.json' assert { type: "json" };
 import * as dotenv from "dotenv";
 
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import { assert } from "chai";
 
 import { TxReceipt } from '@ethereumjs/vm';
@@ -125,14 +125,14 @@ const blockDataDto: BlockData = {
     transactionsRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.transactionsRoot)),
     receiptsRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.receiptsRoot)),
     logsBloom: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.logsBloom)),
-    difficulty: parseInt(blockData.difficulty),
-    number: parseInt(blockData.number),
-    gasLimit: parseInt(blockData.gasLimit),
-    gasUsed: parseInt(blockData.gasUsed),
-    timestamp: parseInt(blockData.timestamp),
+    difficulty: BigNumber.from(blockData.difficulty),
+    number: BigNumber.from(blockData.number),
+    gasLimit: BigNumber.from(blockData.gasLimit),
+    gasUsed: BigNumber.from(blockData.gasUsed),
+    timestamp: BigNumber.from(blockData.timestamp),
     extraData: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.extraData)),
     mixHash: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.mixHash)),
-    nonce: parseInt(blockData.nonce)
+    nonce: BigNumber.from(blockData.nonce)
 }
 
 const proverDto: ProverDto = {
@@ -142,6 +142,4 @@ const proverDto: ProverDto = {
     receiptProofBranch: pathTxHashes
 }
 
-console.log(proverDto);
-
-const claimed = await refunder.claim(proverDto);
+// const claimed = await refunder.claim(proverDto);

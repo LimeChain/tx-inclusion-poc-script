@@ -1,3 +1,5 @@
+import { BigNumber } from "ethers";
+
 export type BlockData = {
     parentHash: Uint8Array;
     sha3Uncles: Uint8Array;
@@ -6,12 +8,12 @@ export type BlockData = {
     transactionsRoot: Uint8Array;
     receiptsRoot: Uint8Array;
     logsBloom: Uint8Array;
-    difficulty: number;
-    number: number;
-    gasLimit: number;
-    gasUsed: number;
-    timestamp: number;
+    difficulty: BigNumber;
+    number: BigNumber;
+    gasLimit: BigNumber;
+    gasUsed: BigNumber;
+    timestamp: BigNumber;
     extraData: Uint8Array;
     mixHash: Uint8Array;
-    nonce: number;
+    nonce: BigNumber;
 }
