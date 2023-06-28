@@ -1,0 +1,2989 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "oracleAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "parentHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "sha3Uncles",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "address",
+                  "name": "miner",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "stateRoot",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "transactionsRoot",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "receiptsRoot",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "logsBloom",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "difficulty",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "number",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasUsed",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "timestamp",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "extraData",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "mixHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct BlockData",
+              "name": "blockData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "status",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "cumulativeGasUsed",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "bitvector",
+                  "type": "bytes"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "logAddress",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32[]",
+                      "name": "topics",
+                      "type": "bytes32[]"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Log[]",
+                  "name": "logs",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Receipt",
+              "name": "txReceipt",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "blockNumber",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "receiptProofBranch",
+              "type": "bytes32[]"
+            }
+          ],
+          "internalType": "struct ProverDto",
+          "name": "data",
+          "type": "tuple"
+        }
+      ],
+      "name": "proveReceiptInclusion",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x60803461007457601f610ab238819003918201601f19168301916001600160401b038311848410176100795780849260209460405283398101031261007457516001600160a01b0381169081900361007457600080546001600160a01b031916919091179055604051610a2290816100908239f35b600080fd5b634e487b7160e01b600052604160045260246000fdfe608060405260048036101561001357600080fd5b600090813560e01c632bd275631461002a57600080fd5b346100f557600319906020368301126100f15780359167ffffffffffffffff908184116100ed5760809084360301126100e957610068610100604052565b828201358181116100ed576100829083369186010161020b565b60805260248301358181116100ed576100a090833691860101610442565b60a052604483013560c05260648301359081116100e9576100c593503692010161030a565b60e0526100e56100d36104de565b60405190151581529081906020820190565b0390f35b8380fd5b8480fd5b8280fd5b5080fd5b634e487b7160e01b600052604160045260246000fd5b6060810190811067ffffffffffffffff82111761012b57604052565b6100f9565b6040810190811067ffffffffffffffff82111761012b57604052565b90601f8019910116810190811067ffffffffffffffff82111761012b57604052565b604051906101e0820182811067ffffffffffffffff82111761012b57604052565b35906001600160a01b03821682036101a357565b600080fd5b67ffffffffffffffff811161012b57601f01601f191660200190565b81601f820112156101a3578035906101db826101a8565b926101e9604051948561014c565b828452602083830101116101a357816000926020809301838601378301015290565b9190916101e0818403126101a35761022161016e565b92813584526020820135602085015261023c6040830161018f565b6040850152606082013560608501526080820135608085015260a082013560a085015260c082013567ffffffffffffffff908181116101a357826102819185016101c4565b60c086015260e083013560e0860152610100808401359086015261012080840135908601526101408084013590860152610160808401359086015261018091828401359182116101a3576102d69184016101c4565b908401526101a080820135908401526101c08091013590830152565b67ffffffffffffffff811161012b5760051b60200190565b81601f820112156101a357803591610321836102f2565b9261032f604051948561014c565b808452602092838086019260051b8201019283116101a3578301905b828210610359575050505090565b8135815290830190830161034b565b9080601f830112156101a357813561037f816102f2565b9260409161038f8351958661014c565b808552602093848087019260051b840101938185116101a357858401925b8584106103be575050505050505090565b67ffffffffffffffff84358181116101a357860191606080601f1985880301126101a3578451906103ee8261010f565b6103f98b860161018f565b8252858501358481116101a357878c6104149288010161030a565b8b8301528401359283116101a357610433868b809695819601016101c4565b858201528152019301926103ad565b9190916080818403126101a3576040519067ffffffffffffffff90608083018281118482101761012b576040528294813580151581036101a35784526020820135602085015260408201358381116101a357816104a09184016101c4565b604085015260608201359283116101a3576060926104be9201610368565b910152565b908160209103126101a3575190565b6040513d6000823e3d90fd5b6104f16104ed60a05151151590565b1590565b61056d5760005460c051604051637741562f60e11b8152600481019190915290602090829060249082906001600160a01b03165afa9081156105a057600091610572575b506105416080516106e9565b0361056d5761056461055460a0516108bc565b60e05160a06080510151906105a5565b61056d57600190565b600090565b610593915060203d8111610599575b61058b818361014c565b8101906104c3565b38610535565b503d610581565b6104d2565b90926000925b82518410156105fc576020808560051b850101519160008382106000146105ef57506000525260406000205b9260001981146105ea57600101926105ab565b610605565b91604093835252206105d7565b91509291501490565b634e487b7160e01b600052601160045260246000fd5b919082519283825260005b848110610647575050826000602080949584010152601f8019910116010190565b602081830181015184830182015201610626565b9b97999591939d9f9e9d6106926106de9c98946101c09f9b97938f6106b29860409282526020820152019060018060a01b03169052565b60608d015260808c015260a08b01526101e08060c08c01528a019061061b565b9560e089015261010088015261012087015261014086015261016085015283820361018085015261061b565b946101a08201520152565b8051602082015160408301519091906001600160a01b031692606081015190608081015160a082015160c083015160e0840151610100850151610120860151916101408701519361016088015195610180890151976101a08a0151996101c001519a6040519e8f9e8f6020019e61075f9f61065b565b03601f1981018252610771908261014c565b61077a9061078d565b610783906107bf565b8051906020012090565b6000602060405161079d81610130565b82815201526020815191604051926107b484610130565b835201602082015290565b8051906107cb826101a8565b916107d9604051938461014c565b8083526107e8601f19916101a8565b0136602084013781511561080f5780602061080c920151905190836020019061083f565b90565b5090565b60200390602082116105ea57565b6000198101919082116105ea57565b601f81116105ea576101000a90565b9290919283156108b65792915b60209384841061088157805182528481018091116105ea579381018091116105ea5791601f1981019081116105ea579161084c565b919350918061088f57505050565b6108a361089e6108a892610813565b610830565b610821565b905182518216911916179052565b50915050565b908151151560209081840151936040906108f58282015160608093015197845195878701528486015260808386015260a085019061061b565b90601f19928385840301608086015287519081845286840187808460051b8701019a01936000925b84841061095857505050505050509061094661094b92826109509596970390810183528261014c565b61078d565b6107bf565b805191012090565b9091929394959a878c8203018452898751918481019060018060a01b0384511681528483850151928785840152835180915284608084019401906000905b8082106109cb57505050916109b99184936001960151908781840391015261061b565b9d98019695919091019301919061091d565b92509294808297956001935181520196019201918e9492879296949661099656fea26469706673582212207554e6e714e2e10e4055bdae8e8d32b04ec8e335eebc1f74cfa3e0dab5de37d164736f6c63430008140033",
+    "sourceMap": "334:2080:24:-:0;;;;;;;;;;;;;-1:-1:-1;;334:2080:24;;;;-1:-1:-1;;;;;334:2080:24;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;334:2080:24;;;;;;;;-1:-1:-1;334:2080:24;;-1:-1:-1;;;;;;334:2080:24;;;;;;;;;;;;;;;;;-1:-1:-1;334:2080:24;;;;;;-1:-1:-1;334:2080:24;;;;;-1:-1:-1;334:2080:24",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405260048036101561001357600080fd5b600090813560e01c632bd275631461002a57600080fd5b346100f557600319906020368301126100f15780359167ffffffffffffffff908184116100ed5760809084360301126100e957610068610100604052565b828201358181116100ed576100829083369186010161020b565b60805260248301358181116100ed576100a090833691860101610442565b60a052604483013560c05260648301359081116100e9576100c593503692010161030a565b60e0526100e56100d36104de565b60405190151581529081906020820190565b0390f35b8380fd5b8480fd5b8280fd5b5080fd5b634e487b7160e01b600052604160045260246000fd5b6060810190811067ffffffffffffffff82111761012b57604052565b6100f9565b6040810190811067ffffffffffffffff82111761012b57604052565b90601f8019910116810190811067ffffffffffffffff82111761012b57604052565b604051906101e0820182811067ffffffffffffffff82111761012b57604052565b35906001600160a01b03821682036101a357565b600080fd5b67ffffffffffffffff811161012b57601f01601f191660200190565b81601f820112156101a3578035906101db826101a8565b926101e9604051948561014c565b828452602083830101116101a357816000926020809301838601378301015290565b9190916101e0818403126101a35761022161016e565b92813584526020820135602085015261023c6040830161018f565b6040850152606082013560608501526080820135608085015260a082013560a085015260c082013567ffffffffffffffff908181116101a357826102819185016101c4565b60c086015260e083013560e0860152610100808401359086015261012080840135908601526101408084013590860152610160808401359086015261018091828401359182116101a3576102d69184016101c4565b908401526101a080820135908401526101c08091013590830152565b67ffffffffffffffff811161012b5760051b60200190565b81601f820112156101a357803591610321836102f2565b9261032f604051948561014c565b808452602092838086019260051b8201019283116101a3578301905b828210610359575050505090565b8135815290830190830161034b565b9080601f830112156101a357813561037f816102f2565b9260409161038f8351958661014c565b808552602093848087019260051b840101938185116101a357858401925b8584106103be575050505050505090565b67ffffffffffffffff84358181116101a357860191606080601f1985880301126101a3578451906103ee8261010f565b6103f98b860161018f565b8252858501358481116101a357878c6104149288010161030a565b8b8301528401359283116101a357610433868b809695819601016101c4565b858201528152019301926103ad565b9190916080818403126101a3576040519067ffffffffffffffff90608083018281118482101761012b576040528294813580151581036101a35784526020820135602085015260408201358381116101a357816104a09184016101c4565b604085015260608201359283116101a3576060926104be9201610368565b910152565b908160209103126101a3575190565b6040513d6000823e3d90fd5b6104f16104ed60a05151151590565b1590565b61056d5760005460c051604051637741562f60e11b8152600481019190915290602090829060249082906001600160a01b03165afa9081156105a057600091610572575b506105416080516106e9565b0361056d5761056461055460a0516108bc565b60e05160a06080510151906105a5565b61056d57600190565b600090565b610593915060203d8111610599575b61058b818361014c565b8101906104c3565b38610535565b503d610581565b6104d2565b90926000925b82518410156105fc576020808560051b850101519160008382106000146105ef57506000525260406000205b9260001981146105ea57600101926105ab565b610605565b91604093835252206105d7565b91509291501490565b634e487b7160e01b600052601160045260246000fd5b919082519283825260005b848110610647575050826000602080949584010152601f8019910116010190565b602081830181015184830182015201610626565b9b97999591939d9f9e9d6106926106de9c98946101c09f9b97938f6106b29860409282526020820152019060018060a01b03169052565b60608d015260808c015260a08b01526101e08060c08c01528a019061061b565b9560e089015261010088015261012087015261014086015261016085015283820361018085015261061b565b946101a08201520152565b8051602082015160408301519091906001600160a01b031692606081015190608081015160a082015160c083015160e0840151610100850151610120860151916101408701519361016088015195610180890151976101a08a0151996101c001519a6040519e8f9e8f6020019e61075f9f61065b565b03601f1981018252610771908261014c565b61077a9061078d565b610783906107bf565b8051906020012090565b6000602060405161079d81610130565b82815201526020815191604051926107b484610130565b835201602082015290565b8051906107cb826101a8565b916107d9604051938461014c565b8083526107e8601f19916101a8565b0136602084013781511561080f5780602061080c920151905190836020019061083f565b90565b5090565b60200390602082116105ea57565b6000198101919082116105ea57565b601f81116105ea576101000a90565b9290919283156108b65792915b60209384841061088157805182528481018091116105ea579381018091116105ea5791601f1981019081116105ea579161084c565b919350918061088f57505050565b6108a361089e6108a892610813565b610830565b610821565b905182518216911916179052565b50915050565b908151151560209081840151936040906108f58282015160608093015197845195878701528486015260808386015260a085019061061b565b90601f19928385840301608086015287519081845286840187808460051b8701019a01936000925b84841061095857505050505050509061094661094b92826109509596970390810183528261014c565b61078d565b6107bf565b805191012090565b9091929394959a878c8203018452898751918481019060018060a01b0384511681528483850151928785840152835180915284608084019401906000905b8082106109cb57505050916109b99184936001960151908781840391015261061b565b9d98019695919091019301919061091d565b92509294808297956001935181520196019201918e9492879296949661099656fea26469706673582212207554e6e714e2e10e4055bdae8e8d32b04ec8e335eebc1f74cfa3e0dab5de37d164736f6c63430008140033",
+    "sourceMap": "334:2080:24:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;334:2080:24;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;:::i;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;:::o;:::-;;;-1:-1:-1;;;;;334:2080:24;;;;;;:::o;:::-;;;;;;;;;;;;-1:-1:-1;;334:2080:24;;;;:::o;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;:::i;:::-;;;;;;;;;;;;;-1:-1:-1;334:2080:24;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;:::o;:::-;;;;;;;;;;;:::o;:::-;;;;;;;;;;734:575;845:22;846:21;:14;;334:2080;;;;;846:21;845:22;;334:2080;845:22;841:40;;846:21;334:2080;930:16;334:2080;930:16;334:2080;-1:-1:-1;;;909:38:24;;;;;334:2080;;;;;846:14;;334:2080;;;;;;-1:-1:-1;;;;;334:2080:24;909:38;;;;;;;846:21;909:38;;;734:575;977:14;963:29;334:2080;977:14;963:29;:::i;:::-;909:83;892:123;;1108:149;1050:31;846:14;1066;1050:31;:::i;:::-;1144:23;;846:14;334:2080;1185:14;:27;334:2080;1108:149;;:::i;:::-;1091:189;;1298:4;734:575;:::o;1091:189::-;846:21;1268:12;:::o;909:38::-;;;;846:14;909:38;;;;;;;;;;:::i;:::-;;;;;:::i;:::-;;;;;;;;;;;:::i;1156:154:21:-;;;-1:-1:-1;2073:116:21;2111:3;334:2080:24;;2093:16:21;;;;;334:2080:24;;;;;;;;;9064:51:21;-1:-1:-1;9064:5:21;;;:51;:5;;;9264:119;-1:-1:-1;9264:119:21;;;-1:-1:-1;9264:119:21;9064:51;2111:3;-1:-1:-1;;334:2080:24;;;;;;2078:13:21;;;334:2080:24;;:::i;9064:51:21:-;9264:119;;;;;;;9064:51;;2093:16;;;;;;1270:33;1156:154;:::o;334:2080:24:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;:::o;1315:696::-;334:2080;;1500:15;;;334:2080;1529:10;;;334:2080;;;;-1:-1:-1;;;;;334:2080:24;1553:14;;;;334:2080;1581:21;;;;334:2080;1616:17;;;334:2080;1647:14;;;;1675:15;;;334:2080;1704:11;;;334:2080;1729:13;;;334:2080;1756:12;;;;334:2080;1782:14;;;;334:2080;1810:14;;;;;1838:12;;;;334:2080;1864:10;;;334:2080;;1529:10;334:2080;1447:437;;;;1500:15;1447:437;;;;;:::i;:::-;;334:2080;;1447:437;;;;;;;;:::i;:::-;1930:26;;;:::i;:::-;1983:20;;;:::i;:::-;334:2080;;;1500:15;334:2080;1973:31;1315:696;:::o;1513:221:0:-;-1:-1:-1;334:2080:24;;;;;;:::i;:::-;;;;;;;;;;;;;;;;:::i;:::-;;;1624:58:0;334:2080:24;1699:28:0;;334:2080:24;1513:221:0;:::o;4849:337::-;334:2080:24;;;;;;:::i;:::-;;;;;;;;:::i;:::-;;;;;;;;;:::i;:::-;;;;;;;;;4992:18:0;4988:37;;5129:11;334:2080:24;5147:8:0;5129:11;;334:2080:24;;;5057:57:0;;334:2080:24;5057:57:0;5147:8;;:::i;:::-;4849:337;:::o;4988:37::-;5012:13;;:::o;408:2::-;334:2080:24;408:2:0;;334:2080:24;408:2:0;;;;:::o;:::-;-1:-1:-1;;408:2:0;;;;;;;;:::o;:::-;;;;;;;;;:::o;9871:768::-;;;;;9952:8;;9948:21;;10026:194;;10051:16;408:2;10033:16;;;;;;10083:65;;;;408:2;;;;;;;;;;;;;;;;10051:16;-1:-1:-1;;408:2:0;;;;;;;10026:194;;;10033:16;;;;;10234:7;10230:403;;9871:768;;;:::o;10230:403::-;10356:22;10362:15;10356:26;10362:15;;:::i;:::-;10356:22;:::i;:::-;:26;:::i;:::-;10396:227;;;;;;;;;;;;9871:768::o;9948:21::-;9962:7;;;;:::o;2017:395:24:-;;334:2080;;;;2200:22;;;;;334:2080;2236:14;;;334:2080;2236:14;;;;2264:9;;;;;334:2080;;;2151:132;;;;334:2080;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;334:2080:24;;;;;;;2151:132;;;;;;;;;2329:28;2151:132;;2384:20;2151:132;;;;;;;;;;;:::i;:::-;2329:28;:::i;:::-;2384:20;:::i;:::-;334:2080;;;;2374:31;;2017:395::o;334:2080::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;334:2080:24;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "proveReceiptInclusion(((bytes32,bytes32,address,bytes32,bytes32,bytes32,bytes,uint256,uint256,uint256,uint256,uint256,bytes,bytes32,uint256),(bool,uint256,bytes,(address,bytes32[],bytes)[]),uint256,bytes32[]))": "2bd27563"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracleAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"parentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"sha3Uncles\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"miner\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"stateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"transactionsRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"receiptsRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"logsBloom\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"difficulty\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gasUsed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"extraData\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"mixHash\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"internalType\":\"struct BlockData\",\"name\":\"blockData\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"cumulativeGasUsed\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"bitvector\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"logAddress\",\"type\":\"address\"},{\"internalType\":\"bytes32[]\",\"name\":\"topics\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Log[]\",\"name\":\"logs\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Receipt\",\"name\":\"txReceipt\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"internalType\":\"bytes32[]\",\"name\":\"receiptProofBranch\",\"type\":\"bytes32[]\"}],\"internalType\":\"struct ProverDto\",\"name\":\"data\",\"type\":\"tuple\"}],\"name\":\"proveReceiptInclusion\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/ReceiptInclusionProver.sol\":\"ReceiptInclusionProver\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":Solidity-RLP/=lib/Solidity-RLP/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin/=lib/openzeppelin-contracts/contracts/\"],\"viaIR\":true},\"sources\":{\"lib/Solidity-RLP/contracts/RLPReader.sol\":{\"keccak256\":\"0x3a44f2de3c752fa4f926f3fd4cad8338dab742484150c0d7d2f785409ed8db4d\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://6cd4b69adf6d84acc8336e3a76f1195ccf19f03b085ec8679d9e310ea3af701e\",\"dweb:/ipfs/QmQEaZki2snFRNoHXsbu9jBxqGG72BgFbs6fpmwvcTxcQS\"]},\"lib/forge-std/src/console.sol\":{\"keccak256\":\"0x91d5413c2434ca58fd278b6e1e79fd98d10c83931cc2596a6038eee4daeb34ba\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://91ccea707361e48b9b7a161fe81f496b9932bc471e9c4e4e1e9c283f2453cc70\",\"dweb:/ipfs/QmcB66sZhQ6Kz7MUHcLE78YXRUZxoZnnxZjN6yATsbB2ec\"]},\"lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol\":{\"keccak256\":\"0xaf740c46b537dfe28be5f111fefb9d0f039e5aa103a941d860f49ad62d5aa05a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://00bb87c2122e34d3f428ee955b3595c8e1c3b2a1fafae442d8bf376323eacc43\",\"dweb:/ipfs/QmNVWNrhc9Lqp2BDv6SpxK5NoUMaqaoqLfh6guBiX27xoZ\"]},\"src/ReceiptInclusionProver.sol\":{\"keccak256\":\"0x06b30d7cd2995def176a4d16642102330713c47b2dec43a33e16d2d2be500bdf\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://932e9aa9b867a29b1727e72b2ae45ae28e431a360c358f147bb2858886cef5f8\",\"dweb:/ipfs/QmYrUP4p2SXxAxSZjAgSSy47ouepojmJTbWSXFVbKEocCa\"]},\"src/interfaces/IReceiptInclusionProver.sol\":{\"keccak256\":\"0x6bc350a566fc693f37789df278f05d11bfef622446483452eceb08c6d22c86b5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://237e9332c0e0703921b01e134f82930cbd4675526bb9d7f447a897d4effd155a\",\"dweb:/ipfs/QmQATY3CXkUHgL5CVB9cDJH5SAQYtCkChe8eZULi5x3wbP\"]},\"src/interfaces/ITrustedOracle.sol\":{\"keccak256\":\"0xbc4a7ecb26b269f9e8aafa7596493955296c049253254f252976e639abf9fca2\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2303f4307ec58f3d6cb4b3fe3f58e8fd568709c5641f8a0aa1096fc92b48074f\",\"dweb:/ipfs/QmVhZnBxQkDAwNSjdVFzf6WgPXGh3UpcWM298XDsNLHo72\"]},\"src/structs/BlockData.sol\":{\"keccak256\":\"0x529dee1e555ec02697bf2e242449b2c711bb6ae429778987841d706c34455390\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://70a14db6b11ae6b8dd5f2cccbfbad4e138588aca8a15d1283e1d53988373cc02\",\"dweb:/ipfs/QmTWL6e6mHpA5SDapNkdQyraAeWaiLgCq898AhJ5Zvx3tT\"]},\"src/structs/Log.sol\":{\"keccak256\":\"0x73b30bf8fe8e5c3acd83b0e3529a7c4af5eba2097eb1456fb5827c1e30dbe7ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1cec5ce445acb42e7488376696aaaad8e1ea4fbec3e00412a93cc77eecf074aa\",\"dweb:/ipfs/QmaJDKmLnpxMwpiahcmBCcVydadFDnxbEVUAof2PoRfHiV\"]},\"src/structs/ProverDto.sol\":{\"keccak256\":\"0x96bacdbe2939a7023e493b569ef8208e6561d47d6f1a4bbf7014f62ad52312c9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://390244e2293a53102973fde9dea08a493e4c557ac9ba1a6c0b6ae66985c1f2c7\",\"dweb:/ipfs/QmZ91wXTPsXyUZyPbJBfyXdA8LKLNJzmRBPADK7emjQTYK\"]},\"src/structs/Receipt.sol\":{\"keccak256\":\"0xb538691e52c46e83bf4878de38e20c92a29aea589828e88e4b7ee84928c686e9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec6fb7521b43f315fb68225e40eeb79dbe4675df8a47c70041da939c95da7021\",\"dweb:/ipfs/Qmf3ijQiyB5SoV5MohB8KCVvSJE4st621vezu2bqzWn65p\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "oracleAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "struct ProverDto",
+              "name": "data",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "struct BlockData",
+                  "name": "blockData",
+                  "type": "tuple",
+                  "components": [
+                    {
+                      "internalType": "bytes32",
+                      "name": "parentHash",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "sha3Uncles",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "miner",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "stateRoot",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "transactionsRoot",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "receiptsRoot",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "logsBloom",
+                      "type": "bytes"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "difficulty",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "number",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasLimit",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasUsed",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "timestamp",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "extraData",
+                      "type": "bytes"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "mixHash",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "nonce",
+                      "type": "uint256"
+                    }
+                  ]
+                },
+                {
+                  "internalType": "struct Receipt",
+                  "name": "txReceipt",
+                  "type": "tuple",
+                  "components": [
+                    {
+                      "internalType": "bool",
+                      "name": "status",
+                      "type": "bool"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "cumulativeGasUsed",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "bitvector",
+                      "type": "bytes"
+                    },
+                    {
+                      "internalType": "struct Log[]",
+                      "name": "logs",
+                      "type": "tuple[]",
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "logAddress",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes32[]",
+                          "name": "topics",
+                          "type": "bytes32[]"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "data",
+                          "type": "bytes"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "blockNumber",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32[]",
+                  "name": "receiptProofBranch",
+                  "type": "bytes32[]"
+                }
+              ]
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "proveReceiptInclusion",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":Solidity-RLP/=lib/Solidity-RLP/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+        ":forge-std/=lib/forge-std/src/",
+        ":openzeppelin-contracts/=lib/openzeppelin-contracts/",
+        ":openzeppelin/=lib/openzeppelin-contracts/contracts/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/ReceiptInclusionProver.sol": "ReceiptInclusionProver"
+      },
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "lib/Solidity-RLP/contracts/RLPReader.sol": {
+        "keccak256": "0x3a44f2de3c752fa4f926f3fd4cad8338dab742484150c0d7d2f785409ed8db4d",
+        "urls": [
+          "bzz-raw://6cd4b69adf6d84acc8336e3a76f1195ccf19f03b085ec8679d9e310ea3af701e",
+          "dweb:/ipfs/QmQEaZki2snFRNoHXsbu9jBxqGG72BgFbs6fpmwvcTxcQS"
+        ],
+        "license": "Apache-2.0"
+      },
+      "lib/forge-std/src/console.sol": {
+        "keccak256": "0x91d5413c2434ca58fd278b6e1e79fd98d10c83931cc2596a6038eee4daeb34ba",
+        "urls": [
+          "bzz-raw://91ccea707361e48b9b7a161fe81f496b9932bc471e9c4e4e1e9c283f2453cc70",
+          "dweb:/ipfs/QmcB66sZhQ6Kz7MUHcLE78YXRUZxoZnnxZjN6yATsbB2ec"
+        ],
+        "license": "MIT"
+      },
+      "lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol": {
+        "keccak256": "0xaf740c46b537dfe28be5f111fefb9d0f039e5aa103a941d860f49ad62d5aa05a",
+        "urls": [
+          "bzz-raw://00bb87c2122e34d3f428ee955b3595c8e1c3b2a1fafae442d8bf376323eacc43",
+          "dweb:/ipfs/QmNVWNrhc9Lqp2BDv6SpxK5NoUMaqaoqLfh6guBiX27xoZ"
+        ],
+        "license": "MIT"
+      },
+      "src/ReceiptInclusionProver.sol": {
+        "keccak256": "0x06b30d7cd2995def176a4d16642102330713c47b2dec43a33e16d2d2be500bdf",
+        "urls": [
+          "bzz-raw://932e9aa9b867a29b1727e72b2ae45ae28e431a360c358f147bb2858886cef5f8",
+          "dweb:/ipfs/QmYrUP4p2SXxAxSZjAgSSy47ouepojmJTbWSXFVbKEocCa"
+        ],
+        "license": "MIT"
+      },
+      "src/interfaces/IReceiptInclusionProver.sol": {
+        "keccak256": "0x6bc350a566fc693f37789df278f05d11bfef622446483452eceb08c6d22c86b5",
+        "urls": [
+          "bzz-raw://237e9332c0e0703921b01e134f82930cbd4675526bb9d7f447a897d4effd155a",
+          "dweb:/ipfs/QmQATY3CXkUHgL5CVB9cDJH5SAQYtCkChe8eZULi5x3wbP"
+        ],
+        "license": "MIT"
+      },
+      "src/interfaces/ITrustedOracle.sol": {
+        "keccak256": "0xbc4a7ecb26b269f9e8aafa7596493955296c049253254f252976e639abf9fca2",
+        "urls": [
+          "bzz-raw://2303f4307ec58f3d6cb4b3fe3f58e8fd568709c5641f8a0aa1096fc92b48074f",
+          "dweb:/ipfs/QmVhZnBxQkDAwNSjdVFzf6WgPXGh3UpcWM298XDsNLHo72"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/BlockData.sol": {
+        "keccak256": "0x529dee1e555ec02697bf2e242449b2c711bb6ae429778987841d706c34455390",
+        "urls": [
+          "bzz-raw://70a14db6b11ae6b8dd5f2cccbfbad4e138588aca8a15d1283e1d53988373cc02",
+          "dweb:/ipfs/QmTWL6e6mHpA5SDapNkdQyraAeWaiLgCq898AhJ5Zvx3tT"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/Log.sol": {
+        "keccak256": "0x73b30bf8fe8e5c3acd83b0e3529a7c4af5eba2097eb1456fb5827c1e30dbe7ea",
+        "urls": [
+          "bzz-raw://1cec5ce445acb42e7488376696aaaad8e1ea4fbec3e00412a93cc77eecf074aa",
+          "dweb:/ipfs/QmaJDKmLnpxMwpiahcmBCcVydadFDnxbEVUAof2PoRfHiV"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/ProverDto.sol": {
+        "keccak256": "0x96bacdbe2939a7023e493b569ef8208e6561d47d6f1a4bbf7014f62ad52312c9",
+        "urls": [
+          "bzz-raw://390244e2293a53102973fde9dea08a493e4c557ac9ba1a6c0b6ae66985c1f2c7",
+          "dweb:/ipfs/QmZ91wXTPsXyUZyPbJBfyXdA8LKLNJzmRBPADK7emjQTYK"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/Receipt.sol": {
+        "keccak256": "0xb538691e52c46e83bf4878de38e20c92a29aea589828e88e4b7ee84928c686e9",
+        "urls": [
+          "bzz-raw://ec6fb7521b43f315fb68225e40eeb79dbe4675df8a47c70041da939c95da7021",
+          "dweb:/ipfs/Qmf3ijQiyB5SoV5MohB8KCVvSJE4st621vezu2bqzWn65p"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/ReceiptInclusionProver.sol",
+    "id": 31105,
+    "exportedSymbols": {
+      "BlockData": [
+        31202
+      ],
+      "IReceiptInclusionProver": [
+        31159
+      ],
+      "ITrustedOracle": [
+        31169
+      ],
+      "Log": [
+        31212
+      ],
+      "MerkleProof": [
+        30815
+      ],
+      "ProverDto": [
+        31228
+      ],
+      "RLPReader": [
+        807
+      ],
+      "Receipt": [
+        31242
+      ],
+      "ReceiptInclusionProver": [
+        31104
+      ],
+      "console": [
+        21886
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:2383:24",
+    "nodes": [
+      {
+        "id": 30918,
+        "nodeType": "PragmaDirective",
+        "src": "32:24:24",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ]
+      },
+      {
+        "id": 30919,
+        "nodeType": "ImportDirective",
+        "src": "58:77:24",
+        "nodes": [],
+        "absolutePath": "lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol",
+        "file": "openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 31105,
+        "sourceUnit": 30816,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30920,
+        "nodeType": "ImportDirective",
+        "src": "136:31:24",
+        "nodes": [],
+        "absolutePath": "lib/forge-std/src/console.sol",
+        "file": "forge-std/console.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 31105,
+        "sourceUnit": 21887,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30921,
+        "nodeType": "ImportDirective",
+        "src": "168:36:24",
+        "nodes": [],
+        "absolutePath": "lib/Solidity-RLP/contracts/RLPReader.sol",
+        "file": "Solidity-RLP/RLPReader.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 31105,
+        "sourceUnit": 808,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30922,
+        "nodeType": "ImportDirective",
+        "src": "206:33:24",
+        "nodes": [],
+        "absolutePath": "src/structs/ProverDto.sol",
+        "file": "./structs/ProverDto.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 31105,
+        "sourceUnit": 31229,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30923,
+        "nodeType": "ImportDirective",
+        "src": "240:41:24",
+        "nodes": [],
+        "absolutePath": "src/interfaces/ITrustedOracle.sol",
+        "file": "./interfaces/ITrustedOracle.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 31105,
+        "sourceUnit": 31170,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30924,
+        "nodeType": "ImportDirective",
+        "src": "282:50:24",
+        "nodes": [],
+        "absolutePath": "src/interfaces/IReceiptInclusionProver.sol",
+        "file": "./interfaces/IReceiptInclusionProver.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 31105,
+        "sourceUnit": 31160,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 31104,
+        "nodeType": "ContractDefinition",
+        "src": "334:2080:24",
+        "nodes": [
+          {
+            "id": 30929,
+            "nodeType": "UsingForDirective",
+            "src": "399:26:24",
+            "nodes": [],
+            "global": false,
+            "libraryName": {
+              "id": 30927,
+              "name": "RLPReader",
+              "nameLocations": [
+                "405:9:24"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 807,
+              "src": "405:9:24"
+            },
+            "typeName": {
+              "id": 30928,
+              "name": "bytes",
+              "nodeType": "ElementaryTypeName",
+              "src": "419:5:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes_storage_ptr",
+                "typeString": "bytes"
+              }
+            }
+          },
+          {
+            "id": 30932,
+            "nodeType": "UsingForDirective",
+            "src": "430:25:24",
+            "nodes": [],
+            "global": false,
+            "libraryName": {
+              "id": 30930,
+              "name": "RLPReader",
+              "nameLocations": [
+                "436:9:24"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 807,
+              "src": "436:9:24"
+            },
+            "typeName": {
+              "id": 30931,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "450:4:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            }
+          },
+          {
+            "id": 30936,
+            "nodeType": "UsingForDirective",
+            "src": "460:38:24",
+            "nodes": [],
+            "global": false,
+            "libraryName": {
+              "id": 30933,
+              "name": "RLPReader",
+              "nameLocations": [
+                "466:9:24"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 807,
+              "src": "466:9:24"
+            },
+            "typeName": {
+              "id": 30935,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 30934,
+                "name": "RLPReader.RLPItem",
+                "nameLocations": [
+                  "480:9:24",
+                  "490:7:24"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 21,
+                "src": "480:17:24"
+              },
+              "referencedDeclaration": 21,
+              "src": "480:17:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_RLPItem_$21_storage_ptr",
+                "typeString": "struct RLPReader.RLPItem"
+              }
+            }
+          },
+          {
+            "id": 30940,
+            "nodeType": "UsingForDirective",
+            "src": "503:39:24",
+            "nodes": [],
+            "global": false,
+            "libraryName": {
+              "id": 30937,
+              "name": "RLPReader",
+              "nameLocations": [
+                "509:9:24"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 807,
+              "src": "509:9:24"
+            },
+            "typeName": {
+              "id": 30939,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 30938,
+                "name": "RLPReader.Iterator",
+                "nameLocations": [
+                  "523:9:24",
+                  "533:8:24"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 27,
+                "src": "523:18:24"
+              },
+              "referencedDeclaration": 27,
+              "src": "523:18:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Iterator_$27_storage_ptr",
+                "typeString": "struct RLPReader.Iterator"
+              }
+            }
+          },
+          {
+            "id": 30943,
+            "nodeType": "VariableDeclaration",
+            "src": "548:30:24",
+            "nodes": [],
+            "constant": false,
+            "mutability": "mutable",
+            "name": "_oracle",
+            "nameLocation": "571:7:24",
+            "scope": 31104,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_ITrustedOracle_$31169",
+              "typeString": "contract ITrustedOracle"
+            },
+            "typeName": {
+              "id": 30942,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 30941,
+                "name": "ITrustedOracle",
+                "nameLocations": [
+                  "548:14:24"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 31169,
+                "src": "548:14:24"
+              },
+              "referencedDeclaration": 31169,
+              "src": "548:14:24",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_ITrustedOracle_$31169",
+                "typeString": "contract ITrustedOracle"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "id": 30955,
+            "nodeType": "FunctionDefinition",
+            "src": "585:143:24",
+            "nodes": [],
+            "body": {
+              "id": 30954,
+              "nodeType": "Block",
+              "src": "620:108:24",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 30952,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 30948,
+                      "name": "_oracle",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30943,
+                      "src": "682:7:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ITrustedOracle_$31169",
+                        "typeString": "contract ITrustedOracle"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 30950,
+                          "name": "oracleAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30945,
+                          "src": "707:13:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 30949,
+                        "name": "ITrustedOracle",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31169,
+                        "src": "692:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_ITrustedOracle_$31169_$",
+                          "typeString": "type(contract ITrustedOracle)"
+                        }
+                      },
+                      "id": 30951,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "692:29:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_ITrustedOracle_$31169",
+                        "typeString": "contract ITrustedOracle"
+                      }
+                    },
+                    "src": "682:39:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ITrustedOracle_$31169",
+                      "typeString": "contract ITrustedOracle"
+                    }
+                  },
+                  "id": 30953,
+                  "nodeType": "ExpressionStatement",
+                  "src": "682:39:24"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "parameters": {
+              "id": 30946,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30945,
+                  "mutability": "mutable",
+                  "name": "oracleAddress",
+                  "nameLocation": "605:13:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30955,
+                  "src": "597:21:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30944,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "597:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "596:23:24"
+            },
+            "returnParameters": {
+              "id": 30947,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "620:0:24"
+            },
+            "scope": 31104,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 31005,
+            "nodeType": "FunctionDefinition",
+            "src": "734:575:24",
+            "nodes": [],
+            "body": {
+              "id": 31004,
+              "nodeType": "Block",
+              "src": "831:478:24",
+              "nodes": [],
+              "statements": [
+                {
+                  "condition": {
+                    "id": 30966,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "845:22:24",
+                    "subExpression": {
+                      "expression": {
+                        "expression": {
+                          "id": 30963,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30958,
+                          "src": "846:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                            "typeString": "struct ProverDto memory"
+                          }
+                        },
+                        "id": 30964,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "851:9:24",
+                        "memberName": "txReceipt",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31222,
+                        "src": "846:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                          "typeString": "struct Receipt memory"
+                        }
+                      },
+                      "id": 30965,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "861:6:24",
+                      "memberName": "status",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 31233,
+                      "src": "846:21:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 30969,
+                  "nodeType": "IfStatement",
+                  "src": "841:40:24",
+                  "trueBody": {
+                    "expression": {
+                      "hexValue": "66616c7365",
+                      "id": 30967,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "876:5:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "functionReturnParameters": 30962,
+                    "id": 30968,
+                    "nodeType": "Return",
+                    "src": "869:12:24"
+                  }
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    },
+                    "id": 30979,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "id": 30972,
+                            "name": "data",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30958,
+                            "src": "930:4:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                              "typeString": "struct ProverDto memory"
+                            }
+                          },
+                          "id": 30973,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "935:11:24",
+                          "memberName": "blockNumber",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 31224,
+                          "src": "930:16:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "expression": {
+                          "id": 30970,
+                          "name": "_oracle",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30943,
+                          "src": "909:7:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_contract$_ITrustedOracle_$31169",
+                            "typeString": "contract ITrustedOracle"
+                          }
+                        },
+                        "id": 30971,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "917:12:24",
+                        "memberName": "getBlockHash",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31168,
+                        "src": "909:20:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_bytes32_$",
+                          "typeString": "function (uint256) view external returns (bytes32)"
+                        }
+                      },
+                      "id": 30974,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "909:38:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "!=",
+                    "rightExpression": {
+                      "arguments": [
+                        {
+                          "expression": {
+                            "id": 30976,
+                            "name": "data",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30958,
+                            "src": "977:4:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                              "typeString": "struct ProverDto memory"
+                            }
+                          },
+                          "id": 30977,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "982:9:24",
+                          "memberName": "blockData",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 31219,
+                          "src": "977:14:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        ],
+                        "id": 30975,
+                        "name": "_getBlockHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31065,
+                        "src": "963:13:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_pure$_t_struct$_BlockData_$31202_memory_ptr_$returns$_t_bytes32_$",
+                          "typeString": "function (struct BlockData memory) pure returns (bytes32)"
+                        }
+                      },
+                      "id": 30978,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "963:29:24",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "src": "909:83:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 30982,
+                  "nodeType": "IfStatement",
+                  "src": "892:123:24",
+                  "trueBody": {
+                    "expression": {
+                      "hexValue": "66616c7365",
+                      "id": 30980,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1010:5:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "functionReturnParameters": 30962,
+                    "id": 30981,
+                    "nodeType": "Return",
+                    "src": "1003:12:24"
+                  }
+                },
+                {
+                  "assignments": [
+                    30984
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 30984,
+                      "mutability": "mutable",
+                      "name": "txReceiptHash",
+                      "nameLocation": "1034:13:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 31004,
+                      "src": "1026:21:24",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 30983,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1026:7:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 30989,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 30986,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30958,
+                          "src": "1066:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                            "typeString": "struct ProverDto memory"
+                          }
+                        },
+                        "id": 30987,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1071:9:24",
+                        "memberName": "txReceipt",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31222,
+                        "src": "1066:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                          "typeString": "struct Receipt memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                          "typeString": "struct Receipt memory"
+                        }
+                      ],
+                      "id": 30985,
+                      "name": "_getReceiptHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 31103,
+                      "src": "1050:15:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_struct$_Receipt_$31242_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (struct Receipt memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 30988,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1050:31:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1026:55:24"
+                },
+                {
+                  "condition": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 30992,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30958,
+                          "src": "1144:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                            "typeString": "struct ProverDto memory"
+                          }
+                        },
+                        "id": 30993,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1149:18:24",
+                        "memberName": "receiptProofBranch",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31227,
+                        "src": "1144:23:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                          "typeString": "bytes32[] memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "expression": {
+                            "id": 30994,
+                            "name": "data",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 30958,
+                            "src": "1185:4:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                              "typeString": "struct ProverDto memory"
+                            }
+                          },
+                          "id": 30995,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1190:9:24",
+                          "memberName": "blockData",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 31219,
+                          "src": "1185:14:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 30996,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1200:12:24",
+                        "memberName": "receiptsRoot",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31183,
+                        "src": "1185:27:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "id": 30997,
+                        "name": "txReceiptHash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30984,
+                        "src": "1230:13:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                          "typeString": "bytes32[] memory"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "expression": {
+                        "id": 30990,
+                        "name": "MerkleProof",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 30815,
+                        "src": "1108:11:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_MerkleProof_$30815_$",
+                          "typeString": "type(library MerkleProof)"
+                        }
+                      },
+                      "id": 30991,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1120:6:24",
+                      "memberName": "verify",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 30333,
+                      "src": "1108:18:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_array$_t_bytes32_$dyn_memory_ptr_$_t_bytes32_$_t_bytes32_$returns$_t_bool_$",
+                        "typeString": "function (bytes32[] memory,bytes32,bytes32) pure returns (bool)"
+                      }
+                    },
+                    "id": 30998,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1108:149:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 31001,
+                  "nodeType": "IfStatement",
+                  "src": "1091:189:24",
+                  "trueBody": {
+                    "expression": {
+                      "hexValue": "66616c7365",
+                      "id": 30999,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1275:5:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "false"
+                    },
+                    "functionReturnParameters": 30962,
+                    "id": 31000,
+                    "nodeType": "Return",
+                    "src": "1268:12:24"
+                  }
+                },
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 31002,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1298:4:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 30962,
+                  "id": 31003,
+                  "nodeType": "Return",
+                  "src": "1291:11:24"
+                }
+              ]
+            },
+            "baseFunctions": [
+              31158
+            ],
+            "functionSelector": "2bd27563",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "proveReceiptInclusion",
+            "nameLocation": "743:21:24",
+            "parameters": {
+              "id": 30959,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30958,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "791:4:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31005,
+                  "src": "774:21:24",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ProverDto_$31228_memory_ptr",
+                    "typeString": "struct ProverDto"
+                  },
+                  "typeName": {
+                    "id": 30957,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 30956,
+                      "name": "ProverDto",
+                      "nameLocations": [
+                        "774:9:24"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 31228,
+                      "src": "774:9:24"
+                    },
+                    "referencedDeclaration": 31228,
+                    "src": "774:9:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ProverDto_$31228_storage_ptr",
+                      "typeString": "struct ProverDto"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "764:37:24"
+            },
+            "returnParameters": {
+              "id": 30962,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30961,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31005,
+                  "src": "825:4:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 30960,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "825:4:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "824:6:24"
+            },
+            "scope": 31104,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 31065,
+            "nodeType": "FunctionDefinition",
+            "src": "1315:696:24",
+            "nodes": [],
+            "body": {
+              "id": 31064,
+              "nodeType": "Block",
+              "src": "1407:604:24",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    31014
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 31014,
+                      "mutability": "mutable",
+                      "name": "blockHashBytes",
+                      "nameLocation": "1430:14:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 31064,
+                      "src": "1417:27:24",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 31013,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1417:5:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 31048,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 31017,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1471:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31018,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1476:10:24",
+                        "memberName": "parentHash",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31173,
+                        "src": "1471:15:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31019,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1500:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31020,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1505:10:24",
+                        "memberName": "sha3Uncles",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31175,
+                        "src": "1500:15:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31021,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1529:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31022,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1534:5:24",
+                        "memberName": "miner",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31177,
+                        "src": "1529:10:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31023,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1553:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31024,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1558:9:24",
+                        "memberName": "stateRoot",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31179,
+                        "src": "1553:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31025,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1581:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31026,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1586:16:24",
+                        "memberName": "transactionsRoot",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31181,
+                        "src": "1581:21:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31027,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1616:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31028,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1621:12:24",
+                        "memberName": "receiptsRoot",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31183,
+                        "src": "1616:17:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31029,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1647:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31030,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1652:9:24",
+                        "memberName": "logsBloom",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31185,
+                        "src": "1647:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31031,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1675:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31032,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1680:10:24",
+                        "memberName": "difficulty",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31187,
+                        "src": "1675:15:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31033,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1704:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31034,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1709:6:24",
+                        "memberName": "number",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31189,
+                        "src": "1704:11:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31035,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1729:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31036,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1734:8:24",
+                        "memberName": "gasLimit",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31191,
+                        "src": "1729:13:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31037,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1756:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31038,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1761:7:24",
+                        "memberName": "gasUsed",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31193,
+                        "src": "1756:12:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31039,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1782:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31040,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1787:9:24",
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31195,
+                        "src": "1782:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31041,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1810:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31042,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1815:9:24",
+                        "memberName": "extraData",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31197,
+                        "src": "1810:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31043,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1838:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31044,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1843:7:24",
+                        "memberName": "mixHash",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31199,
+                        "src": "1838:12:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31045,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31008,
+                          "src": "1864:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                            "typeString": "struct BlockData memory"
+                          }
+                        },
+                        "id": 31046,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "1869:5:24",
+                        "memberName": "nonce",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31201,
+                        "src": "1864:10:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "id": 31015,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "1447:3:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 31016,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "1451:6:24",
+                      "memberName": "encode",
+                      "nodeType": "MemberAccess",
+                      "src": "1447:10:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function () pure returns (bytes memory)"
+                      }
+                    },
+                    "id": 31047,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1447:437:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1417:467:24"
+                },
+                {
+                  "assignments": [
+                    31053
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 31053,
+                      "mutability": "mutable",
+                      "name": "rlpItem",
+                      "nameLocation": "1920:7:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 31064,
+                      "src": "1895:32:24",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_RLPItem_$21_memory_ptr",
+                        "typeString": "struct RLPReader.RLPItem"
+                      },
+                      "typeName": {
+                        "id": 31052,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 31051,
+                          "name": "RLPReader.RLPItem",
+                          "nameLocations": [
+                            "1895:9:24",
+                            "1905:7:24"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 21,
+                          "src": "1895:17:24"
+                        },
+                        "referencedDeclaration": 21,
+                        "src": "1895:17:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_RLPItem_$21_storage_ptr",
+                          "typeString": "struct RLPReader.RLPItem"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 31057,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 31054,
+                        "name": "blockHashBytes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31014,
+                        "src": "1930:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      "id": 31055,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "1945:9:24",
+                      "memberName": "toRlpItem",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 110,
+                      "src": "1930:24:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes_memory_ptr_$returns$_t_struct$_RLPItem_$21_memory_ptr_$attached_to$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) pure returns (struct RLPReader.RLPItem memory)"
+                      }
+                    },
+                    "id": 31056,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1930:26:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_RLPItem_$21_memory_ptr",
+                      "typeString": "struct RLPReader.RLPItem memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1895:61:24"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "id": 31059,
+                            "name": "rlpItem",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 31053,
+                            "src": "1983:7:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_RLPItem_$21_memory_ptr",
+                              "typeString": "struct RLPReader.RLPItem memory"
+                            }
+                          },
+                          "id": 31060,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1991:10:24",
+                          "memberName": "toRlpBytes",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 409,
+                          "src": "1983:18:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_struct$_RLPItem_$21_memory_ptr_$returns$_t_bytes_memory_ptr_$attached_to$_t_struct$_RLPItem_$21_memory_ptr_$",
+                            "typeString": "function (struct RLPReader.RLPItem memory) pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 31061,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1983:20:24",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 31058,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": -8,
+                      "src": "1973:9:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 31062,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1973:31:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 31012,
+                  "id": 31063,
+                  "nodeType": "Return",
+                  "src": "1966:38:24"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getBlockHash",
+            "nameLocation": "1324:13:24",
+            "parameters": {
+              "id": 31009,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31008,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "1364:4:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31065,
+                  "src": "1347:21:24",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BlockData_$31202_memory_ptr",
+                    "typeString": "struct BlockData"
+                  },
+                  "typeName": {
+                    "id": 31007,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 31006,
+                      "name": "BlockData",
+                      "nameLocations": [
+                        "1347:9:24"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 31202,
+                      "src": "1347:9:24"
+                    },
+                    "referencedDeclaration": 31202,
+                    "src": "1347:9:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BlockData_$31202_storage_ptr",
+                      "typeString": "struct BlockData"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1337:37:24"
+            },
+            "returnParameters": {
+              "id": 31012,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31011,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31065,
+                  "src": "1398:7:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 31010,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1398:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1397:9:24"
+            },
+            "scope": 31104,
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 31103,
+            "nodeType": "FunctionDefinition",
+            "src": "2017:395:24",
+            "nodes": [],
+            "body": {
+              "id": 31102,
+              "nodeType": "Block",
+              "src": "2109:303:24",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    31074
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 31074,
+                      "mutability": "mutable",
+                      "name": "receiptHashBytes",
+                      "nameLocation": "2132:16:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 31102,
+                      "src": "2119:29:24",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes_memory_ptr",
+                        "typeString": "bytes"
+                      },
+                      "typeName": {
+                        "id": 31073,
+                        "name": "bytes",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "2119:5:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_storage_ptr",
+                          "typeString": "bytes"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 31086,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "id": 31077,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31068,
+                          "src": "2175:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                            "typeString": "struct Receipt memory"
+                          }
+                        },
+                        "id": 31078,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2180:6:24",
+                        "memberName": "status",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31233,
+                        "src": "2175:11:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31079,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31068,
+                          "src": "2200:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                            "typeString": "struct Receipt memory"
+                          }
+                        },
+                        "id": 31080,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2205:17:24",
+                        "memberName": "cumulativeGasUsed",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31235,
+                        "src": "2200:22:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31081,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31068,
+                          "src": "2236:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                            "typeString": "struct Receipt memory"
+                          }
+                        },
+                        "id": 31082,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2241:9:24",
+                        "memberName": "bitvector",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31237,
+                        "src": "2236:14:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      {
+                        "expression": {
+                          "id": 31083,
+                          "name": "data",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 31068,
+                          "src": "2264:4:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                            "typeString": "struct Receipt memory"
+                          }
+                        },
+                        "id": 31084,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "2269:4:24",
+                        "memberName": "logs",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 31241,
+                        "src": "2264:9:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Log_$31212_memory_ptr_$dyn_memory_ptr",
+                          "typeString": "struct Log memory[] memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        },
+                        {
+                          "typeIdentifier": "t_array$_t_struct$_Log_$31212_memory_ptr_$dyn_memory_ptr",
+                          "typeString": "struct Log memory[] memory"
+                        }
+                      ],
+                      "expression": {
+                        "id": 31075,
+                        "name": "abi",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -1,
+                        "src": "2151:3:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_abi",
+                          "typeString": "abi"
+                        }
+                      },
+                      "id": 31076,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberLocation": "2155:6:24",
+                      "memberName": "encode",
+                      "nodeType": "MemberAccess",
+                      "src": "2151:10:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
+                        "typeString": "function () pure returns (bytes memory)"
+                      }
+                    },
+                    "id": 31085,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2151:132:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_memory_ptr",
+                      "typeString": "bytes memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2119:164:24"
+                },
+                {
+                  "assignments": [
+                    31091
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 31091,
+                      "mutability": "mutable",
+                      "name": "rlpItem",
+                      "nameLocation": "2319:7:24",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 31102,
+                      "src": "2294:32:24",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_RLPItem_$21_memory_ptr",
+                        "typeString": "struct RLPReader.RLPItem"
+                      },
+                      "typeName": {
+                        "id": 31090,
+                        "nodeType": "UserDefinedTypeName",
+                        "pathNode": {
+                          "id": 31089,
+                          "name": "RLPReader.RLPItem",
+                          "nameLocations": [
+                            "2294:9:24",
+                            "2304:7:24"
+                          ],
+                          "nodeType": "IdentifierPath",
+                          "referencedDeclaration": 21,
+                          "src": "2294:17:24"
+                        },
+                        "referencedDeclaration": 21,
+                        "src": "2294:17:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_RLPItem_$21_storage_ptr",
+                          "typeString": "struct RLPReader.RLPItem"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 31095,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 31092,
+                        "name": "receiptHashBytes",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31074,
+                        "src": "2329:16:24",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      },
+                      "id": 31093,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "2346:9:24",
+                      "memberName": "toRlpItem",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 110,
+                      "src": "2329:26:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes_memory_ptr_$returns$_t_struct$_RLPItem_$21_memory_ptr_$attached_to$_t_bytes_memory_ptr_$",
+                        "typeString": "function (bytes memory) pure returns (struct RLPReader.RLPItem memory)"
+                      }
+                    },
+                    "id": 31094,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2329:28:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_RLPItem_$21_memory_ptr",
+                      "typeString": "struct RLPReader.RLPItem memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "2294:63:24"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "id": 31097,
+                            "name": "rlpItem",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 31091,
+                            "src": "2384:7:24",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_RLPItem_$21_memory_ptr",
+                              "typeString": "struct RLPReader.RLPItem memory"
+                            }
+                          },
+                          "id": 31098,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "2392:10:24",
+                          "memberName": "toRlpBytes",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 409,
+                          "src": "2384:18:24",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$_t_struct$_RLPItem_$21_memory_ptr_$returns$_t_bytes_memory_ptr_$attached_to$_t_struct$_RLPItem_$21_memory_ptr_$",
+                            "typeString": "function (struct RLPReader.RLPItem memory) pure returns (bytes memory)"
+                          }
+                        },
+                        "id": 31099,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2384:20:24",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes_memory_ptr",
+                          "typeString": "bytes memory"
+                        }
+                      ],
+                      "id": 31096,
+                      "name": "keccak256",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": -8,
+                      "src": "2374:9:24",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (bytes memory) pure returns (bytes32)"
+                      }
+                    },
+                    "id": 31100,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2374:31:24",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "functionReturnParameters": 31072,
+                  "id": 31101,
+                  "nodeType": "Return",
+                  "src": "2367:38:24"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_getReceiptHash",
+            "nameLocation": "2026:15:24",
+            "parameters": {
+              "id": 31069,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31068,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "2066:4:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31103,
+                  "src": "2051:19:24",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Receipt_$31242_memory_ptr",
+                    "typeString": "struct Receipt"
+                  },
+                  "typeName": {
+                    "id": 31067,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 31066,
+                      "name": "Receipt",
+                      "nameLocations": [
+                        "2051:7:24"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 31242,
+                      "src": "2051:7:24"
+                    },
+                    "referencedDeclaration": 31242,
+                    "src": "2051:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Receipt_$31242_storage_ptr",
+                      "typeString": "struct Receipt"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2041:35:24"
+            },
+            "returnParameters": {
+              "id": 31072,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31071,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 31103,
+                  "src": "2100:7:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 31070,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2100:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2099:9:24"
+            },
+            "scope": 31104,
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 30925,
+              "name": "IReceiptInclusionProver",
+              "nameLocations": [
+                "369:23:24"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 31159,
+              "src": "369:23:24"
+            },
+            "id": 30926,
+            "nodeType": "InheritanceSpecifier",
+            "src": "369:23:24"
+          }
+        ],
+        "canonicalName": "ReceiptInclusionProver",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          31104,
+          31159
+        ],
+        "name": "ReceiptInclusionProver",
+        "nameLocation": "343:22:24",
+        "scope": 31105,
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 24
+}

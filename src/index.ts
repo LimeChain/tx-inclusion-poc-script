@@ -2,11 +2,13 @@ import { stripHexPrefixIfNecessary, getTransactionByHash, getTransactionReceipt,
 import { RLP } from '@ethereumjs/rlp'
 import { Trie } from '@ethereumjs/trie';
 import { encodeReceipt } from "@ethereumjs/vm/dist/runBlock.js";
-import { keccak256 } from "ethereumjs-util";
-import { toUtf8Bytes } from "@ethersproject/strings";
 
-import TrustedOracleAbi from './abis/TrustedOracle.json' assert { type: "json" };
-import DummyRefunderAbi from './abis/DummyRefunder.json' assert { type: "json" };
+import { DummyRefunder__factory } from './types/typechain/factories/DummyRefunder__factory.js';
+import { BlockDataStruct, DummyRefunder, LogStruct, ProverDtoStruct, ReceiptStruct } from './types/typechain/DummyRefunder';
+
+import { TrustedOracle__factory } from './types/typechain/factories/TrustedOracle__factory.js';
+import { TrustedOracle } from './types/typechain/TrustedOracle';
+
 import * as dotenv from "dotenv";
 
 import { BigNumber, ethers } from 'ethers';
@@ -15,8 +17,6 @@ import { assert } from "chai";
 import { TxReceipt } from '@ethereumjs/vm';
 import type { JsonRpcTx } from '@ethereumjs/tx'
 import type {Log} from '@ethereumjs/evm';
-import { BlockData } from './types/BlockData.js';
-import { ProverDto } from './types/ProverDto.js';
 dotenv.config();
 
 assert(process.env.OWNER_PK !== undefined);
@@ -39,17 +39,8 @@ const provider = new ethers.providers.JsonRpcProvider(
 
 const wallet = new ethers.Wallet(ownerPrivateKey, provider);
 
-const oracleContract = new ethers.Contract(
-    oracleAddress,
-    TrustedOracleAbi,
-    wallet,
-);
-
-const refunder = new ethers.Contract(
-    refunderAddress,
-    DummyRefunderAbi,
-    wallet,
-);
+const oracleContract: TrustedOracle = TrustedOracle__factory.connect(oracleAddress, wallet);
+const refunder: DummyRefunder = DummyRefunder__factory.connect(refunderAddress, wallet);
 
 // run the script for this tx
 const txHash = "0x04eb492e769ec030a9ce5720ad9023cf8401ed8dbdb71c28958197ced6d4b646";
@@ -57,11 +48,12 @@ const txHash = "0x04eb492e769ec030a9ce5720ad9023cf8401ed8dbdb71c28958197ced6d4b6
 // gather data
 const txData: JsonRpcTx = await getTransactionByHash(txHash);
 const txReceipt = await getTransactionReceipt(txHash);
-const targetTxIndex = txData.transactionIndex;
+
 // check tx status == 0
 if (parseInt(txReceipt.status) !== 1) throw new Error("tx status is not successfull");
 
 const blockData = await getBlockByHash(txData.blockHash);
+console.log(blockData);
 console.log(parseInt(blockData.number), blockData.hash);
 
 await oracleContract.setBlockHash(parseInt(blockData.number), blockData.hash);
@@ -112,34 +104,50 @@ if (blockData.receiptsRoot !== `0x${receiptTrie.root().toString('hex')}`) {
 //const receiptProofBranch = await receiptTrie.createProof(Buffer.from(RLP.encode(parseInt(txReceipt.transactionIndex))));
 const path = await receiptTrie.findPath(Buffer.from(RLP.encode(parseInt(txReceipt.transactionIndex))));
 
-// TODO: needs to be double-checked
 const pathTxHashes = path.stack.map((x: any) => {
-    return Buffer.from(stripHexPrefixIfNecessary(keccak256(x._value).toString('hex')));
+    return ethers.utils.keccak256(x._value);
 })
 
-const blockDataDto: BlockData = {
-    parentHash: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.parentHash)),
-    sha3Uncles: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.sha3Uncles)),
-    miner: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.miner)),
-    stateRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.stateRoot)),
-    transactionsRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.transactionsRoot)),
-    receiptsRoot: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.receiptsRoot)),
-    logsBloom: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.logsBloom)),
+const blockDataDto: BlockDataStruct = {
+    parentHash: blockData.parentHash,
+    sha3Uncles: blockData.sha3Uncles,
+    miner: blockData.miner,
+    stateRoot: blockData.stateRoot,
+    transactionsRoot: blockData.transactionsRoot,
+    receiptsRoot: blockData.receiptsRoot,
+    logsBloom: blockData.logsBloom,
     difficulty: BigNumber.from(blockData.difficulty),
     number: BigNumber.from(blockData.number),
     gasLimit: BigNumber.from(blockData.gasLimit),
     gasUsed: BigNumber.from(blockData.gasUsed),
     timestamp: BigNumber.from(blockData.timestamp),
-    extraData: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.extraData)),
-    mixHash: toUtf8Bytes(stripHexPrefixIfNecessary(blockData.mixHash)),
+    extraData: blockData.extraData,
+    mixHash: blockData.mixHash,
     nonce: BigNumber.from(blockData.nonce)
 }
 
-const proverDto: ProverDto = {
+const logs: LogStruct[] = txReceipt.logs.map((log: any) => {
+    return {
+        address: log.address,
+        topics: log.topics,
+        data: log.data
+    }
+});
+
+const receiptDto: ReceiptStruct = {
+    status: txReceipt.status === '0x1',
+    cumulativeGasUsed: BigNumber.from(txReceipt.cumulativeGasUsed),
+    bitvector: txReceipt.logsBloom,
+    logs: logs
+}
+
+const proverDto: ProverDtoStruct = {
     blockData: blockDataDto,
-    txReceipt: txReceipt,
-    blockNumber: blockData.number,
+    txReceipt: receiptDto,
+    blockNumber: BigNumber.from(blockData.number),
     receiptProofBranch: pathTxHashes
 }
 
-// const claimed = await refunder.claim(proverDto);
+console.log(JSON.stringify(proverDto, null, 2));
+
+const claimed = await refunder.claim(proverDto);

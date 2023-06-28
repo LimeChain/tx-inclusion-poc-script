@@ -1,64 +1,842 @@
-[
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "proverAddress",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "proverAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "bytes32",
+                  "name": "parentHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "sha3Uncles",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "address",
+                  "name": "miner",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "stateRoot",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "transactionsRoot",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "receiptsRoot",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "logsBloom",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "difficulty",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "number",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasUsed",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "timestamp",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "extraData",
+                  "type": "bytes"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "mixHash",
+                  "type": "bytes32"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct BlockData",
+              "name": "blockData",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "status",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "cumulativeGasUsed",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "bitvector",
+                  "type": "bytes"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "logAddress",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32[]",
+                      "name": "topics",
+                      "type": "bytes32[]"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Log[]",
+                  "name": "logs",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Receipt",
+              "name": "txReceipt",
+              "type": "tuple"
+            },
+            {
+              "internalType": "uint256",
+              "name": "blockNumber",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32[]",
+              "name": "receiptProofBranch",
+              "type": "bytes32[]"
+            }
+          ],
+          "internalType": "struct ProverDto",
+          "name": "data",
+          "type": "tuple"
+        }
+      ],
+      "name": "claim",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x60803461007357601f61012e38819003918201601f19168301916001600160401b038311848410176100785780849260209460405283398101031261007357516001600160a01b0381169081900361007357600080546001600160a01b031916919091179055604051609f908161008f8239f35b600080fd5b634e487b7160e01b600052604160045260246000fdfe6080806040526004361015601257600080fd5b600090813560e01c634801d8d414602857600080fd5b34605d576003196020368201126065576004359067ffffffffffffffff821160615760809136030112605d5780600160209252f35b5080fd5b8380fd5b8280fdfea2646970667358221220cedbe2e5fe3f1ef9fe951692a392ff3b0014f98c965a7683eccd55201abc4bc264736f6c63430008140033",
+    "sourceMap": "144:332:23:-:0;;;;;;;;;;;;;-1:-1:-1;;144:332:23;;;;-1:-1:-1;;;;;144:332:23;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;144:332:23;;;;;;;;-1:-1:-1;144:332:23;;-1:-1:-1;;;;;;144:332:23;;;;;;;;;;;;;;;;;-1:-1:-1;144:332:23;;;;;;-1:-1:-1;144:332:23;;;;;-1:-1:-1;144:332:23",
+    "linkReferences": {}
   },
-  {
-    "inputs": [
+  "deployedBytecode": {
+    "object": "0x6080806040526004361015601257600080fd5b600090813560e01c634801d8d414602857600080fd5b34605d576003196020368201126065576004359067ffffffffffffffff821160615760809136030112605d5780600160209252f35b5080fd5b8380fd5b8280fdfea2646970667358221220cedbe2e5fe3f1ef9fe951692a392ff3b0014f98c965a7683eccd55201abc4bc264736f6c63430008140033",
+    "sourceMap": "144:332:23:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;144:332:23;;;;;;;;;;;;;;;;;;;;;;;;463:4;144:332;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "claim(((bytes32,bytes32,address,bytes32,bytes32,bytes32,bytes,uint256,uint256,uint256,uint256,uint256,bytes,bytes32,uint256),(bool,uint256,bytes,(address,bytes32[],bytes)[]),uint256,bytes32[]))": "4801d8d4"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"proverAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"bytes32\",\"name\":\"parentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"sha3Uncles\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"miner\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"stateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"transactionsRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"receiptsRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"logsBloom\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"difficulty\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"number\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gasLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"gasUsed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"extraData\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"mixHash\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"internalType\":\"struct BlockData\",\"name\":\"blockData\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"cumulativeGasUsed\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"bitvector\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"logAddress\",\"type\":\"address\"},{\"internalType\":\"bytes32[]\",\"name\":\"topics\",\"type\":\"bytes32[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"internalType\":\"struct Log[]\",\"name\":\"logs\",\"type\":\"tuple[]\"}],\"internalType\":\"struct Receipt\",\"name\":\"txReceipt\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"internalType\":\"bytes32[]\",\"name\":\"receiptProofBranch\",\"type\":\"bytes32[]\"}],\"internalType\":\"struct ProverDto\",\"name\":\"data\",\"type\":\"tuple\"}],\"name\":\"claim\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/DummyRefunder.sol\":\"DummyRefunder\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":Solidity-RLP/=lib/Solidity-RLP/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":openzeppelin/=lib/openzeppelin-contracts/contracts/\"],\"viaIR\":true},\"sources\":{\"src/DummyRefunder.sol\":{\"keccak256\":\"0xca6936e98d75bd7b3ddb12755c7d5c2e9ff49f9465da85f05509d8ff34d7b518\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9a69ec1c81a732fd5c48ed4ac44b07d1baf33e45d4b5a0d37d31b3728ab2ac69\",\"dweb:/ipfs/QmPzFZ7PzJYdcwsnW8YcpcxRVYwW4mTKVBRbmCBLMW2Utm\"]},\"src/interfaces/IReceiptInclusionProver.sol\":{\"keccak256\":\"0x6bc350a566fc693f37789df278f05d11bfef622446483452eceb08c6d22c86b5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://237e9332c0e0703921b01e134f82930cbd4675526bb9d7f447a897d4effd155a\",\"dweb:/ipfs/QmQATY3CXkUHgL5CVB9cDJH5SAQYtCkChe8eZULi5x3wbP\"]},\"src/structs/BlockData.sol\":{\"keccak256\":\"0x529dee1e555ec02697bf2e242449b2c711bb6ae429778987841d706c34455390\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://70a14db6b11ae6b8dd5f2cccbfbad4e138588aca8a15d1283e1d53988373cc02\",\"dweb:/ipfs/QmTWL6e6mHpA5SDapNkdQyraAeWaiLgCq898AhJ5Zvx3tT\"]},\"src/structs/Log.sol\":{\"keccak256\":\"0x73b30bf8fe8e5c3acd83b0e3529a7c4af5eba2097eb1456fb5827c1e30dbe7ea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1cec5ce445acb42e7488376696aaaad8e1ea4fbec3e00412a93cc77eecf074aa\",\"dweb:/ipfs/QmaJDKmLnpxMwpiahcmBCcVydadFDnxbEVUAof2PoRfHiV\"]},\"src/structs/ProverDto.sol\":{\"keccak256\":\"0x96bacdbe2939a7023e493b569ef8208e6561d47d6f1a4bbf7014f62ad52312c9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://390244e2293a53102973fde9dea08a493e4c557ac9ba1a6c0b6ae66985c1f2c7\",\"dweb:/ipfs/QmZ91wXTPsXyUZyPbJBfyXdA8LKLNJzmRBPADK7emjQTYK\"]},\"src/structs/Receipt.sol\":{\"keccak256\":\"0xb538691e52c46e83bf4878de38e20c92a29aea589828e88e4b7ee84928c686e9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec6fb7521b43f315fb68225e40eeb79dbe4675df8a47c70041da939c95da7021\",\"dweb:/ipfs/Qmf3ijQiyB5SoV5MohB8KCVvSJE4st621vezu2bqzWn65p\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "proverAddress",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "struct ProverDto",
+              "name": "data",
+              "type": "tuple",
+              "components": [
+                {
+                  "internalType": "struct BlockData",
+                  "name": "blockData",
+                  "type": "tuple",
+                  "components": [
+                    {
+                      "internalType": "bytes32",
+                      "name": "parentHash",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "sha3Uncles",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "miner",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "stateRoot",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "transactionsRoot",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "receiptsRoot",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "logsBloom",
+                      "type": "bytes"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "difficulty",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "number",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasLimit",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasUsed",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "timestamp",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "extraData",
+                      "type": "bytes"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "mixHash",
+                      "type": "bytes32"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "nonce",
+                      "type": "uint256"
+                    }
+                  ]
+                },
+                {
+                  "internalType": "struct Receipt",
+                  "name": "txReceipt",
+                  "type": "tuple",
+                  "components": [
+                    {
+                      "internalType": "bool",
+                      "name": "status",
+                      "type": "bool"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "cumulativeGasUsed",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "bitvector",
+                      "type": "bytes"
+                    },
+                    {
+                      "internalType": "struct Log[]",
+                      "name": "logs",
+                      "type": "tuple[]",
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "logAddress",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes32[]",
+                          "name": "topics",
+                          "type": "bytes32[]"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "data",
+                          "type": "bytes"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "blockNumber",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes32[]",
+                  "name": "receiptProofBranch",
+                  "type": "bytes32[]"
+                }
+              ]
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "claim",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":Solidity-RLP/=lib/Solidity-RLP/contracts/",
+        ":ds-test/=lib/forge-std/lib/ds-test/src/",
+        ":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+        ":forge-std/=lib/forge-std/src/",
+        ":openzeppelin-contracts/=lib/openzeppelin-contracts/",
+        ":openzeppelin/=lib/openzeppelin-contracts/contracts/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/DummyRefunder.sol": "DummyRefunder"
+      },
+      "libraries": {},
+      "viaIR": true
+    },
+    "sources": {
+      "src/DummyRefunder.sol": {
+        "keccak256": "0xca6936e98d75bd7b3ddb12755c7d5c2e9ff49f9465da85f05509d8ff34d7b518",
+        "urls": [
+          "bzz-raw://9a69ec1c81a732fd5c48ed4ac44b07d1baf33e45d4b5a0d37d31b3728ab2ac69",
+          "dweb:/ipfs/QmPzFZ7PzJYdcwsnW8YcpcxRVYwW4mTKVBRbmCBLMW2Utm"
+        ],
+        "license": "MIT"
+      },
+      "src/interfaces/IReceiptInclusionProver.sol": {
+        "keccak256": "0x6bc350a566fc693f37789df278f05d11bfef622446483452eceb08c6d22c86b5",
+        "urls": [
+          "bzz-raw://237e9332c0e0703921b01e134f82930cbd4675526bb9d7f447a897d4effd155a",
+          "dweb:/ipfs/QmQATY3CXkUHgL5CVB9cDJH5SAQYtCkChe8eZULi5x3wbP"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/BlockData.sol": {
+        "keccak256": "0x529dee1e555ec02697bf2e242449b2c711bb6ae429778987841d706c34455390",
+        "urls": [
+          "bzz-raw://70a14db6b11ae6b8dd5f2cccbfbad4e138588aca8a15d1283e1d53988373cc02",
+          "dweb:/ipfs/QmTWL6e6mHpA5SDapNkdQyraAeWaiLgCq898AhJ5Zvx3tT"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/Log.sol": {
+        "keccak256": "0x73b30bf8fe8e5c3acd83b0e3529a7c4af5eba2097eb1456fb5827c1e30dbe7ea",
+        "urls": [
+          "bzz-raw://1cec5ce445acb42e7488376696aaaad8e1ea4fbec3e00412a93cc77eecf074aa",
+          "dweb:/ipfs/QmaJDKmLnpxMwpiahcmBCcVydadFDnxbEVUAof2PoRfHiV"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/ProverDto.sol": {
+        "keccak256": "0x96bacdbe2939a7023e493b569ef8208e6561d47d6f1a4bbf7014f62ad52312c9",
+        "urls": [
+          "bzz-raw://390244e2293a53102973fde9dea08a493e4c557ac9ba1a6c0b6ae66985c1f2c7",
+          "dweb:/ipfs/QmZ91wXTPsXyUZyPbJBfyXdA8LKLNJzmRBPADK7emjQTYK"
+        ],
+        "license": "MIT"
+      },
+      "src/structs/Receipt.sol": {
+        "keccak256": "0xb538691e52c46e83bf4878de38e20c92a29aea589828e88e4b7ee84928c686e9",
+        "urls": [
+          "bzz-raw://ec6fb7521b43f315fb68225e40eeb79dbe4675df8a47c70041da939c95da7021",
+          "dweb:/ipfs/Qmf3ijQiyB5SoV5MohB8KCVvSJE4st621vezu2bqzWn65p"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/DummyRefunder.sol",
+    "id": 30917,
+    "exportedSymbols": {
+      "BlockData": [
+        31202
+      ],
+      "DummyRefunder": [
+        30916
+      ],
+      "IReceiptInclusionProver": [
+        31159
+      ],
+      "Log": [
+        31212
+      ],
+      "ProverDto": [
+        31228
+      ],
+      "Receipt": [
+        31242
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:445:23",
+    "nodes": [
       {
-        "components": [
+        "id": 30887,
+        "nodeType": "PragmaDirective",
+        "src": "32:24:23",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ]
+      },
+      {
+        "id": 30888,
+        "nodeType": "ImportDirective",
+        "src": "58:50:23",
+        "nodes": [],
+        "absolutePath": "src/interfaces/IReceiptInclusionProver.sol",
+        "file": "./interfaces/IReceiptInclusionProver.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 30917,
+        "sourceUnit": 31160,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30889,
+        "nodeType": "ImportDirective",
+        "src": "109:33:23",
+        "nodes": [],
+        "absolutePath": "src/structs/ProverDto.sol",
+        "file": "./structs/ProverDto.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 30917,
+        "sourceUnit": 31229,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 30916,
+        "nodeType": "ContractDefinition",
+        "src": "144:332:23",
+        "nodes": [
           {
-            "internalType": "uint256",
-            "name": "blockNumber",
-            "type": "uint256"
+            "id": 30892,
+            "nodeType": "VariableDeclaration",
+            "src": "173:39:23",
+            "nodes": [],
+            "constant": false,
+            "mutability": "mutable",
+            "name": "_prover",
+            "nameLocation": "205:7:23",
+            "scope": 30916,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_IReceiptInclusionProver_$31159",
+              "typeString": "contract IReceiptInclusionProver"
+            },
+            "typeName": {
+              "id": 30891,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 30890,
+                "name": "IReceiptInclusionProver",
+                "nameLocations": [
+                  "173:23:23"
+                ],
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 31159,
+                "src": "173:23:23"
+              },
+              "referencedDeclaration": 31159,
+              "src": "173:23:23",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IReceiptInclusionProver_$31159",
+                "typeString": "contract IReceiptInclusionProver"
+              }
+            },
+            "visibility": "private"
           },
           {
-            "internalType": "bytes32",
-            "name": "blockHash",
-            "type": "bytes32"
+            "id": 30904,
+            "nodeType": "FunctionDefinition",
+            "src": "219:152:23",
+            "nodes": [],
+            "body": {
+              "id": 30903,
+              "nodeType": "Block",
+              "src": "254:117:23",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 30901,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 30897,
+                      "name": "_prover",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 30892,
+                      "src": "316:7:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IReceiptInclusionProver_$31159",
+                        "typeString": "contract IReceiptInclusionProver"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "arguments": [
+                        {
+                          "id": 30899,
+                          "name": "proverAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 30894,
+                          "src": "350:13:23",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        ],
+                        "id": 30898,
+                        "name": "IReceiptInclusionProver",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 31159,
+                        "src": "326:23:23",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_IReceiptInclusionProver_$31159_$",
+                          "typeString": "type(contract IReceiptInclusionProver)"
+                        }
+                      },
+                      "id": 30900,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "326:38:23",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_IReceiptInclusionProver_$31159",
+                        "typeString": "contract IReceiptInclusionProver"
+                      }
+                    },
+                    "src": "316:48:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IReceiptInclusionProver_$31159",
+                      "typeString": "contract IReceiptInclusionProver"
+                    }
+                  },
+                  "id": 30902,
+                  "nodeType": "ExpressionStatement",
+                  "src": "316:48:23"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "parameters": {
+              "id": 30895,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30894,
+                  "mutability": "mutable",
+                  "name": "proverAddress",
+                  "nameLocation": "239:13:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30904,
+                  "src": "231:21:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 30893,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "231:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "230:23:23"
+            },
+            "returnParameters": {
+              "id": 30896,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "254:0:23"
+            },
+            "scope": 30916,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
           },
           {
-            "internalType": "bytes32[]",
-            "name": "receiptProofBranch",
-            "type": "bytes32[]"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "receiptRoot",
-            "type": "bytes32"
-          },
-          {
-            "internalType": "uint256",
-            "name": "txIndex",
-            "type": "uint256"
-          },
-          {
-            "internalType": "bytes32",
-            "name": "txReceipt",
-            "type": "bytes32"
+            "id": 30915,
+            "nodeType": "FunctionDefinition",
+            "src": "377:97:23",
+            "nodes": [],
+            "body": {
+              "id": 30914,
+              "nodeType": "Block",
+              "src": "446:28:23",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "hexValue": "74727565",
+                    "id": 30912,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "463:4:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "true"
+                  },
+                  "functionReturnParameters": 30911,
+                  "id": 30913,
+                  "nodeType": "Return",
+                  "src": "456:11:23"
+                }
+              ]
+            },
+            "functionSelector": "4801d8d4",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "claim",
+            "nameLocation": "386:5:23",
+            "parameters": {
+              "id": 30908,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30907,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "411:4:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30915,
+                  "src": "392:23:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ProverDto_$31228_calldata_ptr",
+                    "typeString": "struct ProverDto"
+                  },
+                  "typeName": {
+                    "id": 30906,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 30905,
+                      "name": "ProverDto",
+                      "nameLocations": [
+                        "392:9:23"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 31228,
+                      "src": "392:9:23"
+                    },
+                    "referencedDeclaration": 31228,
+                    "src": "392:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ProverDto_$31228_storage_ptr",
+                      "typeString": "struct ProverDto"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "391:25:23"
+            },
+            "returnParameters": {
+              "id": 30911,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 30910,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 30915,
+                  "src": "440:4:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 30909,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "440:4:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "439:6:23"
+            },
+            "scope": 30916,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
           }
         ],
-        "internalType": "struct ProverDto",
-        "name": "_proverDto",
-        "type": "tuple"
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "DummyRefunder",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          30916
+        ],
+        "name": "DummyRefunder",
+        "nameLocation": "153:13:23",
+        "scope": 30917,
+        "usedErrors": [],
+        "usedEvents": []
       }
     ],
-    "name": "claim",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "pure",
-    "type": "function"
-  }
-]
+    "license": "MIT"
+  },
+  "id": 23
+}

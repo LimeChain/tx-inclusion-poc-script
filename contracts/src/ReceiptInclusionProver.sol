@@ -11,7 +11,7 @@ import "./interfaces/IReceiptInclusionProver.sol";
 
 contract ReceiptInclusionProver is IReceiptInclusionProver {
     using RLPReader for bytes;
-    using RLPReader for uint;
+    using RLPReader for uint256;
     using RLPReader for RLPReader.RLPItem;
     using RLPReader for RLPReader.Iterator;
 
@@ -22,31 +22,18 @@ contract ReceiptInclusionProver is IReceiptInclusionProver {
         _oracle = ITrustedOracle(oracleAddress);
     }
 
-    function proveReceiptInclusion(
-        ProverDto memory data
-    ) external view returns (bool) {
+    function proveReceiptInclusion(ProverDto memory data) external view returns (bool) {
         if (!data.txReceipt.status) return false;
 
-        if (
-            _oracle.getBlockHash(data.blockNumber) !=
-            _getBlockHash(data.blockData)
-        ) return false;
+        if (_oracle.getBlockHash(data.blockNumber) != _getBlockHash(data.blockData)) return false;
 
         bytes32 txReceiptHash = _getReceiptHash(data.txReceipt);
-        if (
-            MerkleProof.verify(
-                data.receiptProofBranch,
-                data.blockData.receiptsRoot,
-                txReceiptHash
-            )
-        ) return false;
+        if (MerkleProof.verify(data.receiptProofBranch, data.blockData.receiptsRoot, txReceiptHash)) return false;
 
         return true;
     }
 
-    function _getBlockHash(
-        BlockData memory data
-    ) internal pure returns (bytes32) {
+    function _getBlockHash(BlockData memory data) internal pure returns (bytes32) {
         bytes memory blockHashBytes = abi.encode(
             data.parentHash,
             data.sha3Uncles,
@@ -69,15 +56,8 @@ contract ReceiptInclusionProver is IReceiptInclusionProver {
         return keccak256(rlpItem.toRlpBytes());
     }
 
-    function _getReceiptHash(
-        Receipt memory data
-    ) internal pure returns (bytes32) {
-        bytes memory receiptHashBytes = abi.encode(
-            data.status,
-            data.cumulativeGasUsed,
-            data.bitvector,
-            data.logs
-        );
+    function _getReceiptHash(Receipt memory data) internal pure returns (bytes32) {
+        bytes memory receiptHashBytes = abi.encode(data.status, data.cumulativeGasUsed, data.bitvector, data.logs);
 
         RLPReader.RLPItem memory rlpItem = receiptHashBytes.toRlpItem();
         return keccak256(rlpItem.toRlpBytes());
