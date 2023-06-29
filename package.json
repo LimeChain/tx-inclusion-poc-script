@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "tsc && node .",
-    "deploy-contracts": "cd contracts && source ../.env && forge script script/Deploy.s.sol:DeployScript --rpc-url $RPC_URL --broadcast"
+    "deploy-contracts": "cd contracts && source ../.env && forge script script/Deploy.s.sol:DeployScript --rpc-url $RPC_URL --broadcast",
+    "postinstall":"typechain --target ethers-v5 --out-dir ./src/types/typechain './contracts/out/**/*.json'"
   },
   "keywords": [],
   "author": "",
