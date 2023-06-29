@@ -105,39 +105,39 @@ if (blockData.receiptsRoot !== `0x${receiptTrie.root().toString('hex')}`) {
 const path = await receiptTrie.findPath(Buffer.from(RLP.encode(parseInt(txReceipt.transactionIndex))));
 
 const pathTxHashes = path.stack.map((x: any) => {
-    return ethers.utils.keccak256(x._value);
+    return ethers.utils.arrayify(ethers.utils.keccak256(x._value));
 })
 
 const blockDataDto: BlockDataStruct = {
-    parentHash: blockData.parentHash,
-    sha3Uncles: blockData.sha3Uncles,
+    parentHash: ethers.utils.arrayify(blockData.parentHash),
+    sha3Uncles: ethers.utils.arrayify(blockData.sha3Uncles),
     miner: blockData.miner,
-    stateRoot: blockData.stateRoot,
-    transactionsRoot: blockData.transactionsRoot,
-    receiptsRoot: blockData.receiptsRoot,
-    logsBloom: blockData.logsBloom,
+    stateRoot: ethers.utils.arrayify(blockData.stateRoot),
+    transactionsRoot: ethers.utils.arrayify(blockData.transactionsRoot),
+    receiptsRoot: ethers.utils.arrayify(blockData.receiptsRoot),
+    logsBloom: ethers.utils.arrayify(blockData.logsBloom),
     difficulty: BigNumber.from(blockData.difficulty),
     number: BigNumber.from(blockData.number),
     gasLimit: BigNumber.from(blockData.gasLimit),
     gasUsed: BigNumber.from(blockData.gasUsed),
     timestamp: BigNumber.from(blockData.timestamp),
-    extraData: blockData.extraData,
-    mixHash: blockData.mixHash,
+    extraData: ethers.utils.arrayify(blockData.extraData),
+    mixHash: ethers.utils.arrayify(blockData.mixHash),
     nonce: BigNumber.from(blockData.nonce)
 }
 
 const logs: LogStruct[] = txReceipt.logs.map((log: any) => {
     return {
-        address: log.address,
-        topics: log.topics,
-        data: log.data
+        logAddress: log.address,
+        data: ethers.utils.arrayify(log.data),
+        topics: log.topics.map((topic: any) => ethers.utils.arrayify(topic)),
     }
 });
 
 const receiptDto: ReceiptStruct = {
     status: txReceipt.status === '0x1',
     cumulativeGasUsed: BigNumber.from(txReceipt.cumulativeGasUsed),
-    bitvector: txReceipt.logsBloom,
+    bitvector: ethers.utils.arrayify(txReceipt.logsBloom),
     logs: logs
 }
 
