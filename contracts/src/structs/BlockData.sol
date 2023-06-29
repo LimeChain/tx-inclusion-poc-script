@@ -16,5 +16,7 @@ struct BlockData {
     uint256 timestamp;
     bytes extraData;
     bytes32 mixHash;
-    uint256 nonce;
+    bytes nonce;
+    uint256 baseFeePerGas;
+    bytes32 withdrawalsRoot;
 }
