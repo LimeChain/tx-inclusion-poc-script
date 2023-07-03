@@ -20,16 +20,10 @@ npm run deploy-contracts
 
 \*Make sure the OWNER_PK env variable has the 'export' word in the line start
 
-## Copy contracts ABIs to src/abis
-
-```
-forge create TrustedOracle --private-key <your private key>
-```
-
 ## Generate typechain types for TypeScript usage
 
 ```
-typechain --target ethers-v5 --out-dir ./src/types/typechain './contracts/out/**/*.json'
+npm run postinstall
 ```
 
 ## Run script
