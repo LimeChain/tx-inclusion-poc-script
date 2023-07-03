@@ -9,3 +9,4 @@ contracts/cache
 contracts/out
 contracts/broadcast
 .vscode
+src/types/typechain
