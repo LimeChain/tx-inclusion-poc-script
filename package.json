@@ -5,13 +5,11 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node .",
-    "deploy-contracts": "cd contracts && source ../.env && forge script script/Deploy.s.sol:DeployScript --rpc-url $RPC_URL --broadcast",
-    "postinstall":"typechain --target ethers-v5 --out-dir ./src/types/typechain './contracts/out/**/*.json'"
+    "start": "tsc && node ."
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@typechain/ethers-v5": "^11.0.0",
     "@types/chai": "^4.3.5",
@@ -27,6 +25,7 @@
     "@ethersproject/strings": "^5.7.0",
     "axios": "^1.4.0",
     "ethereumjs-util": "^7.1.5",
-    "ethers": "^5.7.2"
+    "ethers": "^5.7.2",
+    "tx-inclusion-sdk": "^1.0.1"
   }
 }
