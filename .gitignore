@@ -5,8 +5,4 @@ node_modules
 .DS_Store
 Thumbs.db
 dist
-contracts/cache
-contracts/out
-contracts/broadcast
 .vscode
-src/types/typechain

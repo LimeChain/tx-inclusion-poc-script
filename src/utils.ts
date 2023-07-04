@@ -1,14 +1,11 @@
 import axios from 'axios';
-import { assert } from "chai";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-assert(process.env.RPC_PROVIDER_URL !== undefined);
-
-axios.defaults.baseURL = process.env.RPC_PROVIDER_URL;
+axios.defaults.baseURL = process.env.L1_RPC_PROVIDER_URL;
 
 function getParams(method: string, params: any[]): any {
-    return { "jsonrpc": "2.0", "method": method, "params": params, "id": 1 }
+    return { jsonrpc: "2.0", method: method, params: params, id: 1 }
 }
 
 export function stripHexPrefixIfNecessary(hexString: string): string {

@@ -1,33 +1,15 @@
-## Instalation
+## Installation
 
 ```
 npm install
 ```
 
-## Start local node
+## Make sure you have needed variables in the .env file
 
-```
-anvil
-```
-
-## Deploy contracts to local node
-
-In another terminal execute:
-
-```
-npm run deploy-contracts
-```
-
-\*Make sure the OWNER_PK env variable has the 'export' word in the line start
-
-## Generate typechain types for TypeScript usage
-
-```
-npm run postinstall
-```
+Use .env.template for reference
 
 ## Run script
 
 ```
-npm start
+npm start -- your_transaction_hash
 ```
