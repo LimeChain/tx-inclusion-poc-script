@@ -23,9 +23,10 @@
   "dependencies": {
     "@ethereumjs/vm": "6.5.0",
     "@ethersproject/strings": "^5.7.0",
+    "@limechain/tx-inclusion-sdk": "^1.0.8",
     "axios": "^1.4.0",
+    "eth-util-lite": "^1.0.1",
     "ethereumjs-util": "^7.1.5",
-    "ethers": "^5.7.2",
-    "@limechain/tx-inclusion-sdk": "^1.0.7"
+    "ethers": "^5.7.2"
   }
 }

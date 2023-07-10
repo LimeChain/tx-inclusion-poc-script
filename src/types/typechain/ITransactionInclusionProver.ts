@@ -78,59 +78,65 @@ export type BlockDataStructOutput = [
   withdrawalsRoot: string;
 };
 
-export type LogStruct = {
-  logAddress: string;
+export type TxLogStruct = {
+  addr: string;
   topics: BytesLike[];
   data: BytesLike;
 };
 
-export type LogStructOutput = [string, string[], string] & {
-  logAddress: string;
+export type TxLogStructOutput = [string, string[], string] & {
+  addr: string;
   topics: string[];
   data: string;
 };
 
-export type ReceiptStruct = {
-  status: boolean;
+export type TxReceiptStruct = {
+  receiptType: BigNumberish;
+  postStateOrStatus: BigNumberish;
   cumulativeGasUsed: BigNumberish;
-  logsBloom: BytesLike;
-  logs: LogStruct[];
+  keyIndex: BytesLike;
+  bloom: BytesLike;
+  logs: TxLogStruct[];
 };
 
-export type ReceiptStructOutput = [
-  boolean,
+export type TxReceiptStructOutput = [
+  BigNumber,
+  BigNumber,
   BigNumber,
   string,
-  LogStructOutput[]
+  string,
+  TxLogStructOutput[]
 ] & {
-  status: boolean;
+  receiptType: BigNumber;
+  postStateOrStatus: BigNumber;
   cumulativeGasUsed: BigNumber;
-  logsBloom: string;
-  logs: LogStructOutput[];
+  keyIndex: string;
+  bloom: string;
+  logs: TxLogStructOutput[];
 };
 
 export type ProverDtoStruct = {
   blockData: BlockDataStruct;
-  txReceipt: ReceiptStruct;
+  txReceipt: TxReceiptStruct;
   blockNumber: BigNumberish;
   receiptProofBranch: BytesLike[];
 };
 
 export type ProverDtoStructOutput = [
   BlockDataStructOutput,
-  ReceiptStructOutput,
+  TxReceiptStructOutput,
   BigNumber,
   string[]
 ] & {
   blockData: BlockDataStructOutput;
-  txReceipt: ReceiptStructOutput;
+  txReceipt: TxReceiptStructOutput;
   blockNumber: BigNumber;
   receiptProofBranch: string[];
 };
 
 export interface ITransactionInclusionProverInterface extends utils.Interface {
   functions: {
-    "proveTransactionInclusion(((bytes32,bytes32,address,bytes32,bytes32,bytes32,bytes,uint256,uint256,uint256,uint256,uint256,bytes,bytes32,bytes,uint256,bytes32),(bool,uint256,bytes,(address,bytes32[],bytes)[]),uint256,bytes32[]))": FunctionFragment;
+    "proveTransactionInclusion(((bytes32,bytes32,address,bytes32,bytes32,bytes32,bytes,uint256,uint256,uint256,uint256,uint256,bytes,bytes32,bytes,uint256,bytes32),(uint256,uint256,uint256,bytes,bytes,(address,bytes[],bytes)[]),uint256,bytes[]))": FunctionFragment;
   };
 
   getFunction(

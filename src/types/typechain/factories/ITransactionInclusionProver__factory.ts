@@ -109,9 +109,14 @@ const _abi = [
           {
             components: [
               {
-                internalType: "bool",
-                name: "status",
-                type: "bool",
+                internalType: "uint256",
+                name: "receiptType",
+                type: "uint256",
+              },
+              {
+                internalType: "uint256",
+                name: "postStateOrStatus",
+                type: "uint256",
               },
               {
                 internalType: "uint256",
@@ -120,20 +125,25 @@ const _abi = [
               },
               {
                 internalType: "bytes",
-                name: "logsBloom",
+                name: "keyIndex",
+                type: "bytes",
+              },
+              {
+                internalType: "bytes",
+                name: "bloom",
                 type: "bytes",
               },
               {
                 components: [
                   {
                     internalType: "address",
-                    name: "logAddress",
+                    name: "addr",
                     type: "address",
                   },
                   {
-                    internalType: "bytes32[]",
+                    internalType: "bytes[]",
                     name: "topics",
-                    type: "bytes32[]",
+                    type: "bytes[]",
                   },
                   {
                     internalType: "bytes",
@@ -141,12 +151,12 @@ const _abi = [
                     type: "bytes",
                   },
                 ],
-                internalType: "struct Log[]",
+                internalType: "struct TxLog[]",
                 name: "logs",
                 type: "tuple[]",
               },
             ],
-            internalType: "struct Receipt",
+            internalType: "struct TxReceipt",
             name: "txReceipt",
             type: "tuple",
           },
@@ -156,9 +166,9 @@ const _abi = [
             type: "uint256",
           },
           {
-            internalType: "bytes32[]",
+            internalType: "bytes[]",
             name: "receiptProofBranch",
-            type: "bytes32[]",
+            type: "bytes[]",
           },
         ],
         internalType: "struct ProverDto",

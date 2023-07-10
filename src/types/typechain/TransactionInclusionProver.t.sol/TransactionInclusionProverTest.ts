@@ -50,9 +50,11 @@ export interface TransactionInclusionProverTestInterface
     "targetContracts()": FunctionFragment;
     "targetSelectors()": FunctionFragment;
     "targetSenders()": FunctionFragment;
-    "testProveTransactionInclusion1()": FunctionFragment;
-    "testProveTransactionInclusion2()": FunctionFragment;
-    "testProveTransactionInclusionWithStateRootZeroBeginning()": FunctionFragment;
+    "testGetReceiptHash2()": FunctionFragment;
+    "testVerifyTrieProof1()": FunctionFragment;
+    "testVerifyTrieProof2_map()": FunctionFragment;
+    "testVerifyTrieProof3()": FunctionFragment;
+    "testVerifyTrieProof4_map()": FunctionFragment;
   };
 
   getFunction(
@@ -70,9 +72,11 @@ export interface TransactionInclusionProverTestInterface
       | "targetContracts"
       | "targetSelectors"
       | "targetSenders"
-      | "testProveTransactionInclusion1"
-      | "testProveTransactionInclusion2"
-      | "testProveTransactionInclusionWithStateRootZeroBeginning"
+      | "testGetReceiptHash2"
+      | "testVerifyTrieProof1"
+      | "testVerifyTrieProof2_map"
+      | "testVerifyTrieProof3"
+      | "testVerifyTrieProof4_map"
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: "IS_TEST", values?: undefined): string;
@@ -116,15 +120,23 @@ export interface TransactionInclusionProverTestInterface
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "testProveTransactionInclusion1",
+    functionFragment: "testGetReceiptHash2",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "testProveTransactionInclusion2",
+    functionFragment: "testVerifyTrieProof1",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "testProveTransactionInclusionWithStateRootZeroBeginning",
+    functionFragment: "testVerifyTrieProof2_map",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testVerifyTrieProof3",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testVerifyTrieProof4_map",
     values?: undefined
   ): string;
 
@@ -169,15 +181,23 @@ export interface TransactionInclusionProverTestInterface
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "testProveTransactionInclusion1",
+    functionFragment: "testGetReceiptHash2",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "testProveTransactionInclusion2",
+    functionFragment: "testVerifyTrieProof1",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "testProveTransactionInclusionWithStateRootZeroBeginning",
+    functionFragment: "testVerifyTrieProof2_map",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testVerifyTrieProof3",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testVerifyTrieProof4_map",
     data: BytesLike
   ): Result;
 
@@ -537,15 +557,23 @@ export interface TransactionInclusionProverTest extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string[]] & { targetedSenders_: string[] }>;
 
-    testProveTransactionInclusion1(
+    testGetReceiptHash2(
       overrides?: Overrides & { from?: string }
     ): Promise<ContractTransaction>;
 
-    testProveTransactionInclusion2(
+    testVerifyTrieProof1(
       overrides?: Overrides & { from?: string }
     ): Promise<ContractTransaction>;
 
-    testProveTransactionInclusionWithStateRootZeroBeginning(
+    testVerifyTrieProof2_map(
+      overrides?: Overrides & { from?: string }
+    ): Promise<ContractTransaction>;
+
+    testVerifyTrieProof3(
+      overrides?: Overrides & { from?: string }
+    ): Promise<ContractTransaction>;
+
+    testVerifyTrieProof4_map(
       overrides?: Overrides & { from?: string }
     ): Promise<ContractTransaction>;
   };
@@ -584,15 +612,23 @@ export interface TransactionInclusionProverTest extends BaseContract {
 
   targetSenders(overrides?: CallOverrides): Promise<string[]>;
 
-  testProveTransactionInclusion1(
+  testGetReceiptHash2(
     overrides?: Overrides & { from?: string }
   ): Promise<ContractTransaction>;
 
-  testProveTransactionInclusion2(
+  testVerifyTrieProof1(
     overrides?: Overrides & { from?: string }
   ): Promise<ContractTransaction>;
 
-  testProveTransactionInclusionWithStateRootZeroBeginning(
+  testVerifyTrieProof2_map(
+    overrides?: Overrides & { from?: string }
+  ): Promise<ContractTransaction>;
+
+  testVerifyTrieProof3(
+    overrides?: Overrides & { from?: string }
+  ): Promise<ContractTransaction>;
+
+  testVerifyTrieProof4_map(
     overrides?: Overrides & { from?: string }
   ): Promise<ContractTransaction>;
 
@@ -627,13 +663,15 @@ export interface TransactionInclusionProverTest extends BaseContract {
 
     targetSenders(overrides?: CallOverrides): Promise<string[]>;
 
-    testProveTransactionInclusion1(overrides?: CallOverrides): Promise<void>;
+    testGetReceiptHash2(overrides?: CallOverrides): Promise<void>;
 
-    testProveTransactionInclusion2(overrides?: CallOverrides): Promise<void>;
+    testVerifyTrieProof1(overrides?: CallOverrides): Promise<void>;
 
-    testProveTransactionInclusionWithStateRootZeroBeginning(
-      overrides?: CallOverrides
-    ): Promise<void>;
+    testVerifyTrieProof2_map(overrides?: CallOverrides): Promise<void>;
+
+    testVerifyTrieProof3(overrides?: CallOverrides): Promise<void>;
+
+    testVerifyTrieProof4_map(overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {
@@ -764,15 +802,23 @@ export interface TransactionInclusionProverTest extends BaseContract {
 
     targetSenders(overrides?: CallOverrides): Promise<BigNumber>;
 
-    testProveTransactionInclusion1(
+    testGetReceiptHash2(
       overrides?: Overrides & { from?: string }
     ): Promise<BigNumber>;
 
-    testProveTransactionInclusion2(
+    testVerifyTrieProof1(
       overrides?: Overrides & { from?: string }
     ): Promise<BigNumber>;
 
-    testProveTransactionInclusionWithStateRootZeroBeginning(
+    testVerifyTrieProof2_map(
+      overrides?: Overrides & { from?: string }
+    ): Promise<BigNumber>;
+
+    testVerifyTrieProof3(
+      overrides?: Overrides & { from?: string }
+    ): Promise<BigNumber>;
+
+    testVerifyTrieProof4_map(
       overrides?: Overrides & { from?: string }
     ): Promise<BigNumber>;
   };
@@ -810,15 +856,23 @@ export interface TransactionInclusionProverTest extends BaseContract {
 
     targetSenders(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    testProveTransactionInclusion1(
+    testGetReceiptHash2(
       overrides?: Overrides & { from?: string }
     ): Promise<PopulatedTransaction>;
 
-    testProveTransactionInclusion2(
+    testVerifyTrieProof1(
       overrides?: Overrides & { from?: string }
     ): Promise<PopulatedTransaction>;
 
-    testProveTransactionInclusionWithStateRootZeroBeginning(
+    testVerifyTrieProof2_map(
+      overrides?: Overrides & { from?: string }
+    ): Promise<PopulatedTransaction>;
+
+    testVerifyTrieProof3(
+      overrides?: Overrides & { from?: string }
+    ): Promise<PopulatedTransaction>;
+
+    testVerifyTrieProof4_map(
       overrides?: Overrides & { from?: string }
     ): Promise<PopulatedTransaction>;
   };
